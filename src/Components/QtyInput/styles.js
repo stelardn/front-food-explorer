@@ -5,6 +5,8 @@ export const Container = styled.div`
         cursor: pointer;
     }
 
+    width: 10rem;
+
     * {
         background-color: transparent;
         border: none;
