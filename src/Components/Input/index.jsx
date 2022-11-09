@@ -6,7 +6,7 @@ export function Input({ label, placeholder, ...rest }) {
             <label>
                 {label}
             </label>
-            <input placeholder={placeholder} />
+            <input placeholder={placeholder} {...rest} />
         </Container>
     )
 }

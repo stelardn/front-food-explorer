@@ -4,18 +4,14 @@ import { TextButton } from '../../Components/TextButton';
 import { LinkButton } from '../../Components/LinkButton';
 import { Logo } from "../../Components/Logo";
 
-export function SignUp() {
+export function SignIn() {
     return (
         <Container>
             <ContainerLogo>
                 <Logo />
             </ContainerLogo>
             <ContainerForm>
-                <h1>Crie sua conta</h1>
-                <Input
-                    label='Seu nome'
-                    placeholder='Exemplo: Maria da Silva'
-                />
+                <h1>Faça login</h1>
                 <Input
                     label='Email'
                     placeholder='Exemplo: exemplo@exemplo.com'
@@ -26,10 +22,10 @@ export function SignUp() {
                     type='password'
                 />
                 <TextButton
-                    content='Criar conta'
+                    content='Entrar'
                 />
                 <LinkButton
-                    content='Já tenho uma conta'
+                    content='Criar uma conta'
                 />
             </ContainerForm>
         </Container>
