@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ContainerRight = styled.div`
+export const ContainerForm = styled.div`
 
     width: clamp(34.8rem, 40vw, 47.6rem);
 
@@ -8,7 +8,7 @@ export const ContainerRight = styled.div`
     flex-direction: column;
     gap: 3.2rem;
 
-    padding: 3.2rem clamp(2rem, 3vw, 6.4rem);
+    padding: clamp(3.2rem, 7vw, 6.4rem) clamp(2rem, 3vw, 6.4rem);
     margin: 0 clamp(2rem, 3vw, 6.4rem);
 
     border-radius: 1.6rem;
@@ -28,7 +28,7 @@ export const ContainerRight = styled.div`
     }
 `
 
-export const ContainerLeft = styled.div`
+export const ContainerLogo = styled.div`
     > h1 {
         size: clamp(2.4rem, 1vw, 3.2rem);
     }
