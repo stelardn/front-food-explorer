@@ -8,8 +8,8 @@ export const ContainerForm = styled.div`
     flex-direction: column;
     gap: 3.2rem;
 
-    padding: clamp(3.2rem, 7vw, 6.4rem) clamp(2rem, 3vw, 6.4rem);
-    margin: 0 clamp(2rem, 3vw, 6.4rem);
+    padding: clamp(3.2rem, 7vw, 6.4rem) clamp(2rem, 4vw, 6.4rem);
+    margin: 0 2rem;
 
     border-radius: 1.6rem;
 
