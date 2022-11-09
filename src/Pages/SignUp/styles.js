@@ -2,18 +2,18 @@ import styled from "styled-components";
 
 export const ContainerRight = styled.div`
 
-max-width: 47.6rem;
+    width: clamp(34.8rem, 40vw, 47.6rem);
 
-display: flex;
-flex-direction: column;
-gap: 3.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem;
 
-margin: 0 auto;
-padding: clamp(4rem, 1vh, 6.4rem);
+    padding: 3.2rem clamp(2rem, 3vw, 6.4rem);
+    margin: 0 clamp(2rem, 3vw, 6.4rem);
 
-    /* > input {
-        width: clamp(34.8rem, 10vh, 47.6rem);
-    } */
+    border-radius: 1.6rem;
+
+    background-color: ${({ theme }) => theme.COLORS.BLUE_800};
 
     > h1 {
         font-family: 'Poppins', sans-serif;
@@ -29,22 +29,25 @@ padding: clamp(4rem, 1vh, 6.4rem);
 `
 
 export const ContainerLeft = styled.div`
-    display: none;
+    > h1 {
+        size: clamp(2.4rem, 1vw, 3.2rem);
+    }
 `
 
 export const Container = styled.div`
 
+    display: flex; 
+    align-items: center; 
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    height: 100vh;
+
+    padding-top: 1.5rem;
+
+
     @media(min-width: 900px) {
-        .mobile-hidden {
-            display: block;
-        }
-
-        display: flex;
-        align-items: center;
-
-        justify-content: space-around;
-        
-        margin: 0 auto;
+        flex-direction: row;
     }
 
 `
