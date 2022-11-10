@@ -13,6 +13,10 @@ export const Container = styled.button`
 
     padding: 1.2rem 2.4rem;
 
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
     cursor: pointer;
 
     &&:hover {

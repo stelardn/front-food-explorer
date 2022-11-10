@@ -4,11 +4,14 @@ import { FaChevronLeft } from 'react-icons/fa';
 import { Input } from "./Components/Input";
 import { QtyInput } from "./Components/QtyInput";
 
+import { Header } from './Components/Header';
+
 function App() {
 
   return (
     <>
-      <h1>Hello, World!</h1>
+      <Header />
+      {/* <h1>Hello, World!</h1>
       <TextButton
         content='Criar conta'
       />
@@ -18,7 +21,7 @@ function App() {
       />
       <Input label='Seu nome' placeholder='Exemplo: Maria da Silva' />
 
-      <QtyInput />
+      <QtyInput /> */}
     </>
   )
 }

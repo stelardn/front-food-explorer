@@ -14,7 +14,7 @@ export const Container = styled.div`
     h3 {
         font-family: 'Poppins', sans-serif;
         font-weight: 700;
-        font-size: clamp(2.4rem, 4vh, 5.6rem);
+        font-size: clamp(2.4rem, 4vw, 5.6rem);
         line-height: 140%;
         color: ${({ theme }) => theme.COLORS.GRAY_100};
     }
@@ -22,7 +22,7 @@ export const Container = styled.div`
     p {
         font-family: 'Roboto',sans-serif;
         
-        font-size: clamp(1.4rem, 2vh, 2.4rem);
+        font-size: clamp(1.4rem, 2vw, 2.4rem);
         line-height: 160%;
 
         color: ${({ theme }) => theme.COLORS.GRAY_200};
@@ -56,7 +56,7 @@ export const Container = styled.div`
 
     padding: 5.6rem 4rem 4rem;
 
-    width: 30rem;
+    width: clamp(30rem, 4vw, 60rem);
     
 `
 
