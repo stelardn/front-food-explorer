@@ -36,7 +36,9 @@ export function ViewMeal({ data }) {
 
     return (
         <Container>
-            {favorite ? <FaHeart size={32} onClick={handleFavorite} /> : <FaRegHeart size={32} onClick={handleFavorite} />}
+            <button onClick={handleFavorite}>
+                {favorite ? <FaHeart /> : <FaRegHeart />}
+            </button>
             <img src={mealPicture} />
             <h3>Salada Ravanello</h3>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus, excepturi nesciunt. Soluta minima reprehenderit dolor fuga at eum consectetur esse perspiciatis distinctio deleniti maiores itaque dolore omnis ea, et nemo.</p>
