@@ -1,14 +1,21 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+
+export const Main = styled.div`
+
+    align-self: center;
 
     > svg {
         align-self: flex-end;
     }
 
     > img {
-        height: 17.6rem;
-        width: 17.6rem;
+        height: clamp(17.6rem, 40vw, 22rem);
+        width: clamp(17.6rem, 40vw, 22rem);
     }
 
     h3 {
@@ -23,20 +30,21 @@ export const Container = styled.div`
         font-family: 'Roboto',sans-serif;
         
         font-size: clamp(1.4rem, 2vw, 2.4rem);
-        line-height: 160%;
+        line-height: 130%;
 
         color: ${({ theme }) => theme.COLORS.GRAY_200};
 
         text-align: center;
 
-        height: 4.4rem;
-
+        /* height: 4.4rem; */
+        width: clamp(22rem, 45vw, 60rem);
+/* 
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
 
-        text-overflow: ellipsis;
+        text-overflow: ellipsis; */
     }
 
     .include-amount {
@@ -53,10 +61,12 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
     text-align: center;
+    gap: 1.2rem;
 
-    padding: 5.6rem 4rem 4rem;
+    padding: 2rem 4rem 4rem;
 
-    width: clamp(30rem, 4vw, 60rem);
+    /* width: clamp(30rem, 4vw, 60rem); */
+    width: 100%;
     
 `
 

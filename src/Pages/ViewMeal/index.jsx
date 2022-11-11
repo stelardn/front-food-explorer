@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { Container } from "./styles";
+import { Container, Main } from "./styles";
 
 import { QtyInput } from "../../Components/QtyInput";
 import { PriceTag } from "../../Components/PriceTag";
 import { TextButton } from '../../Components/TextButton';
+import { Header } from '../../Components/Header';
+import { Footer } from '../../Components/Footer';
 
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 
@@ -36,15 +38,19 @@ export function ViewMeal({ data }) {
 
     return (
         <Container>
-            {favorite ? <FaHeart size={32} onClick={handleFavorite} /> : <FaRegHeart size={32} onClick={handleFavorite} />}
-            <img src={mealPicture} />
-            <h3>Salada Ravanello</h3>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus, excepturi nesciunt. Soluta minima reprehenderit dolor fuga at eum consectetur esse perspiciatis distinctio deleniti maiores itaque dolore omnis ea, et nemo.</p>
-            <PriceTag />
-            <div className="include-amount">
-                <QtyInput handleAdd={handleAdd} handleMinus={handleMinus} amount={amount} />
-                <TextButton content='incluir' />
-            </div>
+            <Header />
+            <Main>
+                {favorite ? <FaHeart size={32} onClick={handleFavorite} /> : <FaRegHeart size={32} onClick={handleFavorite} />}
+                <img src={mealPicture} />
+                <h3>Salada Ravanello</h3>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus, excepturi nesciunt. Soluta minima reprehenderit dolor fuga at eum consectetur esse perspiciatis distinctio deleniti maiores itaque dolore omnis ea, et nemo.</p>
+                <PriceTag />
+                <div className="include-amount">
+                    <QtyInput handleAdd={handleAdd} handleMinus={handleMinus} amount={amount} />
+                    <TextButton content='incluir' />
+                </div>
+            </Main>
+            <Footer />
         </Container>
     )
 }
