@@ -1,8 +1,94 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+    .mobile-hidden {
+        display: none;
+    }
+
+    @media (min-width: 940px) {
+        .mobile-hidden {
+            display: flex;
+        }
+
+        .mobile {
+            display: none;
+        }
+    }
+
+`
+
+export const ContainerMobile = styled.div`
 
     background-color: ${({ theme }) => theme.COLORS.BLUE_800};
+
+    display: flex;
+    gap: clamp(1.2rem, 2vw, 2.4rem);
+
+    padding: 1.6rem;
+
+    align-items: center;
+    justify-content: space-around;
+
+    > div:first-of-type {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        padding: 1.2rem;
+        gap: 0.8rem;
+
+        width: fit-content;
+
+        border-radius: 5px;
+
+        height: 4.8rem;
+        
+        background: ${({ theme }) => theme.COLORS.BLUE_700};
+        
+        > input {
+            background: none;
+            border: none;
+            width: clamp(8rem, 24vw, 24rem);
+
+            color: ${({ theme }) => theme.COLORS.WHITE};
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.4rem;
+
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+
+    > button {
+        padding: 12px;
+    }
+
+    > svg {
+        width: 3.2rem;
+        height: 3.2rem;
+
+        cursor: pointer;
+    }
+
+`
+
+export const ContainerDesktop = styled.div`
+
+    background-color: ${({ theme }) => theme.COLORS.BLUE_800};
+
+    display: flex;
+    gap: clamp(1.6rem, 2vw, 3.2rem);
+
+    padding: 2.4rem;
+
+    align-items: center;
+    justify-content: space-around;
+
+    * * {
+        flex-wrap: nowrap;
+    }
+
+
 
     > div:first-of-type {
         gap: 1rem;
@@ -35,7 +121,7 @@ export const Container = styled.div`
         > input {
             background: none;
             border: none;
-            width: 41rem;
+            width: clamp(25rem, 2vw, 41rem);
 
             color: ${({ theme }) => theme.COLORS.WHITE};
             font-family: 'Roboto', sans-serif;
@@ -46,6 +132,13 @@ export const Container = styled.div`
             }
         }
 
+    }
+
+    > svg {
+        width: 3.2rem;
+        height: 3.2rem;
+
+        cursor: pointer;
     }
 
 `
