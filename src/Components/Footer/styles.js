@@ -4,7 +4,7 @@ export const Container = styled.div`
 
     display: none;
 
-    @media (min-width: 940px) {
+    @media (min-width: 960px) {
         background-color: ${({ theme }) => theme.COLORS.BLUE_800};
         
         padding: 2.4rem 4rem;
@@ -13,9 +13,9 @@ export const Container = styled.div`
         align-items: center;
         justify-content: space-between;
 
-        position: absolute;
+        /* position: absolute;
         left: 0;
-        bottom: 0;
+        bottom: 0; */
         width: 100%;
 
         > div:first-of-type {

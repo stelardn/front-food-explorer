@@ -5,7 +5,7 @@ export const Container = styled.div`
         display: none;
     }
 
-    @media (min-width: 940px) {
+    @media (min-width: 960px) {
         .mobile-hidden {
             display: flex;
         }

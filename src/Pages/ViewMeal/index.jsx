@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+
 import { Container, Main } from "./styles";
 
 import { QtyInput } from "../../Components/QtyInput";
@@ -6,15 +8,23 @@ import { PriceTag } from "../../Components/PriceTag";
 import { TextButton } from '../../Components/TextButton';
 import { Header } from '../../Components/Header';
 import { Footer } from '../../Components/Footer';
+import { LinkButton } from "../../Components/LinkButton";
 
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 
 import mealPicture from '../../assets/pic1.png';
+import { FaAngleLeft } from "react-icons/fa";
 
 
 export function ViewMeal({ data }) {
     const [amount, setAmount] = useState(1);
     const [favorite, setFavorite] = useState(false);
+
+    // const navigate = useNavigate();
+
+    // function handleBack() {
+    //     navigate(-1);
+    // }
 
     function handleAdd() {
         if (amount != 99) {
@@ -40,6 +50,7 @@ export function ViewMeal({ data }) {
         <Container>
             <Header />
             <Main>
+                <LinkButton content='voltar' icon={FaAngleLeft}/>
                 {favorite ? <FaHeart size={32} onClick={handleFavorite} /> : <FaRegHeart size={32} onClick={handleFavorite} />}
                 <img src={mealPicture} />
                 <h3>Salada Ravanello</h3>
