@@ -5,11 +5,14 @@ import { Input } from "./Components/Input";
 import { QtyInput } from "./Components/QtyInput";
 
 import { Header } from './Components/Header';
+import { Footer } from './Components/Footer';
+
 
 function App() {
 
   return (
     <>
+      {/* <Header /> */}
       <Header />
       {/* <h1>Hello, World!</h1>
       <TextButton
@@ -22,6 +25,7 @@ function App() {
       <Input label='Seu nome' placeholder='Exemplo: Maria da Silva' />
 
       <QtyInput /> */}
+      <Footer />
     </>
   )
 }
