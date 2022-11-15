@@ -10,7 +10,11 @@ import { Header } from '../../Components/Header';
 import { Footer } from '../../Components/Footer';
 import { LinkButton } from "../../Components/LinkButton";
 
+import alface from '../../assets/alface.png';
+
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { TfiReceipt } from 'react-icons/tfi';
+
 
 import mealPicture from '../../assets/pic1.png';
 import { FaAngleLeft } from "react-icons/fa";
@@ -49,16 +53,30 @@ export function ViewMeal({ data }) {
     return (
         <Container>
             <Header />
-            <Main>
+            <Main id="main">
                 <LinkButton content='voltar' icon={FaAngleLeft}/>
                 {favorite ? <FaHeart size={32} onClick={handleFavorite} /> : <FaRegHeart size={32} onClick={handleFavorite} />}
-                <img src={mealPicture} />
-                <h3>Salada Ravanello</h3>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus, excepturi nesciunt. Soluta minima reprehenderit dolor fuga at eum consectetur esse perspiciatis distinctio deleniti maiores itaque dolore omnis ea, et nemo.</p>
-                <PriceTag />
-                <div className="include-amount">
-                    <QtyInput handleAdd={handleAdd} handleMinus={handleMinus} amount={amount} />
-                    <TextButton content='incluir' />
+                <img src={mealPicture} id='meal-picture'/>
+                <div className="details">
+                    <h3>Salada Ravanello</h3>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus, excepturi nesciunt. Soluta minima reprehenderit dolor fuga at eum consectetur esse perspiciatis distinctio deleniti maiores itaque dolore omnis ea, et nemo.</p>
+                    <div className="ingredients">
+                        <div className="ingredient">
+                            <img src={alface} />
+                            <legend>alface</legend>
+                        </div>
+                        <div className="ingredient">
+                            <img src={alface} />
+                            <legend>alface</legend>
+                        </div>
+                    </div>
+                    <div className="price-calculation">
+                        <PriceTag />
+                        <div className="include-amount">
+                            <QtyInput handleAdd={handleAdd} handleMinus={handleMinus} amount={amount} />
+                            <TextButton content='incluir' icon={TfiReceipt}/>
+                        </div>
+                    </div>
                 </div>
             </Main>
             <Footer />

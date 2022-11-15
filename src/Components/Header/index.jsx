@@ -5,7 +5,7 @@ import { TextButton } from '../TextButton';
 import { LinkButton } from '../LinkButton';
 
 import { FiLogOut, FiSearch } from 'react-icons/fi'
-import { TfiReceipt } from 'react-icons/tfi'
+import { TfiReceipt } from 'react-icons/tfi';
 import { RiHeartsLine } from 'react-icons/ri';
 
 export function Header() {
