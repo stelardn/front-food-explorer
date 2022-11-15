@@ -338,7 +338,7 @@ const mockUser = {
                     price: 17
                 },
             ],
-            status: 'Em andamento',
+            status: 'Preparando',
             price: 58,
             created_at: '27 Dec 2021 15:00 LT',
             updated_at: '27 Dec 2021 15:00 LT'

@@ -9,12 +9,19 @@ import {mockUser} from '../../../mockData';
 
 import {FaCircle} from 'react-icons/fa';
 
-export function UserOrders() {
+import reSvg from '../../assets/react.svg';
+
+export function AdmOrders() {
 
     const [user, setUser] = useState(mockUser);
 
+	function handleStatus(status){
+		
+	}
+
+	
     useEffect((() => {
-        setUser(mockUser);
+		setUser(mockUser);
     }), []);
 
 
@@ -28,7 +35,8 @@ export function UserOrders() {
 						<thead>
 							<tr>
 								<th>Status</th>
-								<th>Código</th>
+								<th className="wide-hidden">Nº</th>
+								<th className="mobile-hidden">Código</th>
 								<th>Detalhamento</th>
 								<th>Data e hora</th>
 							</tr>
@@ -37,34 +45,47 @@ export function UserOrders() {
 							{user.orders.map(order => (
 								<tr key={String(order.id)}>
 									<td className="status" key={`${String(order.id)}.st`}>
-									{
-										(() => {
-											switch(order.status) {
-													
-												case('Preparando'): {
-														return (
-															<FaCircle size={8} color='orange' />
-														)
-													}
-												break;
-													
-												case('Entregue'): {
-													return (
-														<FaCircle size={8} color='green' />
-													)
-												}
-												break;
-												
-												default: {
-														return (
-															<FaCircle size={8} color='red' />
-														)
-													}
-												break;
-												}
-										})()  
-									}  
-										{order.status}
+										<div>
+											{
+												(() => {
+													switch(order.status) {
+														case('Preparando'): {
+																return (
+																	<FaCircle size={8} color='orange' />
+																)
+															}
+														break;
+															
+														case('Entregue'): {
+															return (
+																<FaCircle size={8} color='green' />
+															)
+														}
+														break;
+														
+														default: {
+																return (
+																	<FaCircle size={8} color='red' />
+																)
+															}
+														break;
+														}
+												})()  
+											}  
+											<select onChange={e => handleStatus(e.target.value)}>
+												<option value={1}>
+													<div>
+														Pendente
+													</div>
+												</option>
+												<option value={2}>
+													Preparando
+												</option>
+												<option value={3}>
+													Entregue
+												</option>
+											</select>
+										</div>
 									</td>
 									<td className="code" key={`${String(order.id)}.id`}>
 										{order.id}
