@@ -54,9 +54,9 @@ export function ViewMeal({ data }) {
         <Container>
             <Header />
             <Main id="main">
-                <LinkButton content='voltar' icon={FaAngleLeft}/>
+                <LinkButton content='voltar' icon={FaAngleLeft} />
                 {favorite ? <FaHeart size={32} onClick={handleFavorite} /> : <FaRegHeart size={32} onClick={handleFavorite} />}
-                <img src={mealPicture} id='meal-picture'/>
+                <img src={mealPicture} id='meal-picture' />
                 <div className="details">
                     <h3>Salada Ravanello</h3>
                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus, excepturi nesciunt. Soluta minima reprehenderit dolor fuga at eum consectetur esse perspiciatis distinctio deleniti maiores itaque dolore omnis ea, et nemo.</p>
@@ -74,9 +74,10 @@ export function ViewMeal({ data }) {
                         <PriceTag />
                         <div className="include-amount">
                             <QtyInput handleAdd={handleAdd} handleMinus={handleMinus} amount={amount} />
-                            <TextButton content='incluir' icon={TfiReceipt}/>
+                            <TextButton content='incluir' icon={TfiReceipt} />
                         </div>
                     </div>
+
                 </div>
             </Main>
             <Footer />
