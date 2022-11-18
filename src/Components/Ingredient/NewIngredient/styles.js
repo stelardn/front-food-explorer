@@ -22,6 +22,9 @@ export const Container = styled.div`
     > input {
         font-family: 'Roboto', sans-serif;
         font-size: 1.6rem;
+        line-height: 1.9rem;
+
+        padding: 0;
 
         outline: none;
         border: none;

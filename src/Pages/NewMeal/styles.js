@@ -43,8 +43,6 @@ height: 100vh;
             }
 
             #select-image {
-                margin-top: .8rem;
-
                 display: flex;
                 gap: .8rem;
                 justify-content: center;
@@ -54,6 +52,8 @@ height: 100vh;
                 border: 1px solid white;
 
                 padding: 1.2rem 3.2rem;
+                margin-top: .8rem;
+                height: 5.3rem;
 
                 border-radius: .5rem;
 
@@ -62,10 +62,19 @@ height: 100vh;
                 }
             }
 
-            #ingredients-rol {
-                padding: .8rem;
+            #ingredients {
                 display: flex;
+                flex-direction: column;
                 gap: .8rem;
+
+            }
+
+            #ingredients-rol {
+                padding: .5rem .8rem;
+                display: flex;
+                gap: 1.6rem;
+
+                align-items: center;
 
                 border: var(--border);
                 border-radius: .5rem;
@@ -88,15 +97,20 @@ height: 100vh;
         grid-template-rows: 9.6rem auto 7.8rem;
 
         > main {
-            gap: 3.2rem; 
+            gap: 2.4rem; 
 
             button:first-child {
                 font-size: 2.4rem;
+
+                svg {
+                    height: 3.2rem;
+                    width: 3.2rem;
+                }
             }
 
             h2 {
-                /* font-size: clamp(2.4rem, 8vw, 3.2rem); */
                 font-size: 3.2rem;
+                margin-bottom: .8rem;
             }
 
             form {
