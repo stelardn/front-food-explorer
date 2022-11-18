@@ -8,9 +8,25 @@ import { Ingredient } from "../../Components/Ingredient";
 import { TextButton } from "../../Components/TextButton";
 
 import { FaAngleLeft, FaUpload } from "react-icons/fa";
+import { useState } from "react";
 
 
 export function NewMeal() {
+
+    const [ingredients, setIngredients] = useState(['Pão Naan', 'Pão árabe']);
+    const [newIngredient, setNewIngredient] = useState('');
+
+    function handleAddIngredient(){
+        setIngredients(previous => [...previous, newIngredient]);
+        setNewIngredient('');
+    }
+
+    function handleRemoveIngredient(ingredient){
+        setIngredients(previous => previous.filter(previousIngredient => previousIngredient !== ingredient));
+    }
+
+
+
     return (
         <Container>
             <Header />
@@ -33,9 +49,10 @@ export function NewMeal() {
                         <div id="ingredients">
                             <label>Ingredientes</label>
                             <div id="ingredients-rol">
-                                <Ingredient name='Pão Naan' />
-                                <Ingredient name='Pão Naan' />
-                                <Ingredient isNew />
+                                {ingredients.map((ingredient, index) => (
+                                    <Ingredient key={String(index)} name={ingredient} onClick={() => handleRemoveIngredient(ingredient)} />
+                                ))}
+                                <Ingredient isNew value={newIngredient} onChange={e => setNewIngredient(e.target.value)} onClick={handleAddIngredient} />
                             </div>
                         </div>
                         <Input label='Preço' placeholder='R$ 00,00' />
