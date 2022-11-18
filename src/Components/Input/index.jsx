@@ -1,12 +1,15 @@
 import { Container } from "./styles";
 
-export function Input({ label, placeholder, ...rest }) {
+export function Input({ label, type, placeholder, ...rest }) {
     return (
         <Container>
             <label>
                 {label}
             </label>
-            <input placeholder={placeholder} {...rest} />
+            {
+                type === 'textarea' ? <textarea placeholder={placeholder} {...rest} /> : <input placeholder={placeholder} {...rest} />
+
+            }
         </Container>
     )
 }

@@ -15,7 +15,7 @@ export const Container = styled.div`
         color: ${({ theme }) => theme.COLORS.GRAY_200};
     }
 
-    > input {
+    > input, textarea {
         background: none;
         border: 1px solid ${({ theme }) => theme.COLORS.WHITE};
         color: ${({ theme }) => theme.COLORS.WHITE};
