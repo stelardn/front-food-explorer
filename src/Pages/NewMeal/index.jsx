@@ -30,11 +30,13 @@ export function NewMeal() {
                         <Input label='Nome' placeholder='Ex.: Salada Caesar' />
                     </div>
                     <div id="second-row">
-                        <label>Ingredients</label>
                         <div id="ingredients">
-                            <Ingredient name='Pão Naan' />
-                            <Ingredient name='Pão Naan' />
-                            <Ingredient isNew />
+                            <label>Ingredientes</label>
+                            <div id="ingredients-rol">
+                                <Ingredient name='Pão Naan' />
+                                <Ingredient name='Pão Naan' />
+                                <Ingredient isNew />
+                            </div>
                         </div>
                         <Input label='Preço' placeholder='R$ 00,00' />
                     </div>
