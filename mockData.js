@@ -1,4 +1,4 @@
-const meals = [
+const mockMeals = [
     {
         id: 1,
         name: 'Salada Caesar',
@@ -347,6 +347,6 @@ const mockUser = {
 }
 
 export {
-    meals,
+    mockMeals,
     mockUser
 };
