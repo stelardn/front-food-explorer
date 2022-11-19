@@ -29,19 +29,22 @@ const mockUser = {
                     id: 2,
                     name: 'Caesar Salad',
                     quantity: 1,
-                    price: 24
+                    price: 24,
+                    picture: ''
                 },
                 {
                     id: 3,
                     name: 'Green Salad',
                     quantity: 2,
-                    price: 17
+                    price: 17,
+                    picture: ''
                 },
                 {
                     id: 4,
                     name: 'Green Salad',
                     quantity: 2,
-                    price: 17
+                    price: 17,
+                    picture: ''
                 },
             ],
             status: 'Pendente',
