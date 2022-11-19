@@ -1,6 +1,6 @@
 import { Container, SelectImage } from "./styles";
 
-import { Header } from "../../Components/Header";
+import { HeaderAdm } from "../../Components/HeaderAdm";
 import { Footer } from "../../Components/Footer";
 import { Input } from '../../Components/Input';
 import { LinkButton } from "../../Components/LinkButton";
@@ -50,7 +50,7 @@ export function NewMeal() {
 
     return (
         <Container>
-            <Header />
+            <HeaderAdm />
             <main>
                 <LinkButton content='voltar' icon={FaAngleLeft} />
                 <h2>Criar prato</h2>
