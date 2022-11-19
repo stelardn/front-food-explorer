@@ -42,26 +42,6 @@ height: 100vh;
                 display: none;
             }
 
-            #select-image {
-                display: flex;
-                gap: .8rem;
-                justify-content: center;
-                align-items: center;
-
-                background-color: transparent;
-                border: 1px solid white;
-
-                padding: 1.2rem 3.2rem;
-                margin-top: .8rem;
-                height: 5.3rem;
-
-                border-radius: .5rem;
-
-                span {
-                    font-weight: 500;
-                }
-            }
-
             #ingredients {
                 display: flex;
                 flex-direction: column;
@@ -122,14 +102,6 @@ height: 100vh;
                     div:last-child {
                         width: 100%;
                     }
-
-                    #select-image {
-                        min-width: 22.9rem;
-                        
-                        span {
-                            line-height: 2.4rem;
-                        }
-                    }
                 }
 
                 #second-row {
@@ -142,14 +114,58 @@ height: 100vh;
             button:last-of-type {
                 width: 35.7rem;
                 align-self: flex-end;
-            }
-
-            
-            
-            
+            }   
         }
+    }
+`
+
+export const SelectImage = styled.div`
+    display: flex;
+    gap: .8rem;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+
+    background-color: transparent;
+    border: 1px solid white;
+
+    padding: 1.2rem 3.2rem;
+    margin-top: .8rem;
+    height: 5.3rem;
+
+    border-radius: .5rem;
+
+    span {
+        font-weight: 500;
+    }
+
+    #remove-image {
+        background-color: ${({ theme }) => theme.COLORS.RED_500};
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 50%;
+
+        width: fit-content;        
+        padding: .2rem;
+
+        border: none;
+
+        cursor: pointer;
+
+        > svg {
+            height: 1.6rem;
+            width: 1.6rem;
+        }
+    }
+
+    @media (min-width: 960px) {
+        min-width: 22.9rem;
         
-        
-        
+        span {
+            line-height: 2.4rem;
+        }
     }
 `

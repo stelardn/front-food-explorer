@@ -1,4 +1,4 @@
-import { Container } from "./styles";
+import { Container, SelectImage } from "./styles";
 
 import { Header } from "../../Components/Header";
 import { Footer } from "../../Components/Footer";
@@ -9,12 +9,16 @@ import { TextButton } from "../../Components/TextButton";
 
 import { FaAngleLeft, FaUpload } from "react-icons/fa";
 import { useState } from "react";
+import { mockMeals } from "../../../mockData";
+import { FiX } from "react-icons/fi";
 
 
 export function NewMeal() {
 
     const [ingredients, setIngredients] = useState(['Pão Naan', 'Pão árabe']);
     const [newIngredient, setNewIngredient] = useState('');
+    const [mealPictureFile, setMealPictureFile] = useState();
+    const [mealPictureName, setMealPictureName] = useState(mockMeals[0].picture);
 
     function handleAddIngredient(){
         setIngredients(previous => [...previous, newIngredient]);
@@ -23,6 +27,23 @@ export function NewMeal() {
 
     function handleRemoveIngredient(ingredient){
         setIngredients(previous => previous.filter(previousIngredient => previousIngredient !== ingredient));
+    }
+
+    function handleAddPicture(event){
+        const file = event.target.files[0];
+
+        if(file) {
+            setMealPictureFile(file);
+    
+            const filename = URL.createObjectURL(file);
+            setMealPictureName(filename);
+        }
+    }
+
+    function handleRemovePicture(event){
+        event.preventDefault();
+        setMealPictureFile('');
+        setMealPictureName(mockMeals[0].picture ?? '');
     }
 
 
@@ -37,12 +58,29 @@ export function NewMeal() {
                     <div id="first-row">
                         <label htmlFor='pick-image'>
                             <label>Imagem do prato</label>
-                            <div id="select-image">
-                                <FaUpload />
-                                <span>Selecione imagem</span>
-                            </div>
+                            {(
+                                () => {
+                                    if(mealPictureName) {
+                                        return (
+                                            <SelectImage>
+                                                <span>{mealPictureName}</span>
+                                                <button id="remove-image" onClick={handleRemovePicture}>
+                                                    <FiX color="white"/>
+                                                </button>
+                                            </SelectImage>
+                                        )
+                                    } else {
+                                        return (
+                                            <SelectImage>                                                  
+                                                <FaUpload/>
+                                                <span>Selecione imagem</span>
+                                            </SelectImage>
+                                        )
+                                    }
+                                })()
+                            }
                         </label>
-                        <input id='pick-image' type='file' />
+                        <input id='pick-image' type='file' onChange={handleAddPicture}/>
                         <Input label='Nome' placeholder='Ex.: Salada Caesar' />
                     </div>
                     <div id="second-row">
