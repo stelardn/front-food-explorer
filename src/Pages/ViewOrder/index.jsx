@@ -23,7 +23,7 @@ import { TextButton } from "../../Components/TextButton";
 
 export function ViewOrder(){
 
-    const [order, setOrder] = useState(mockUser.orders[1]);
+    const [order, setOrder] = useState(mockUser.orders[0]);
     const [paymentMethod, setPaymentMethod] = useState('');
     const [paid, setPaid] = useState(false);
 
@@ -62,7 +62,7 @@ export function ViewOrder(){
                     <div id="items-wrapper">
                         {
                             order.items.map(item => (
-                                <OrderItem>
+                                <OrderItem key={String(item.id)}>
                                     <img src={mealImg} alt={`Imagem de ${item.name}.`} />
                                     <div className="item-details">
                                         <p>
@@ -140,7 +140,6 @@ export function ViewOrder(){
 						</div>
                     </div>
                 </Payment>
-
             </main>
             <Footer/>
         </Container>

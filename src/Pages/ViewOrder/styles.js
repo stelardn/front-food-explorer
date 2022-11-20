@@ -5,18 +5,21 @@ export const Container = styled.div`
     --border: 1px solid rgba(255, 255, 255, 0.1);
 
     > main {
-        padding: 2rem;
+        padding: 0.5rem 2rem 2rem;
         display: flex;
         flex-direction: column;
         gap: 1.6rem;
-
-        align-items: left;
-        justify-content: center;
+        
+        justify-content: space-between;
+        width: 100%;
+        max-width: 104.9rem;
+        margin: clamp(2rem, 3vh, 3.2rem) auto 0;
 
         h2 {
             font-family: 'Poppins', sans-serif;
             font-weight: 500;
-            font-size: clamp(2.4rem, 2vw, 3.2rem);
+            font-size: clamp(2.4rem, 3vw, 3.2rem);
+            margin-bottom: clamp(1rem,2vh,3.2rem);
         }
     }
 
@@ -27,6 +30,8 @@ export const Container = styled.div`
 
         > main {
             flex-direction: row;
+            justify-content: space-between;
+            gap: clamp(1.6rem, 2vw, 7.5rem);
         }
     }
 
@@ -50,6 +55,27 @@ export const MyOrder = styled.div`
 
     @media (min-width: 960px) {
         max-width: 44.4rem;
+        
+        
+        #items-wrapper {
+            margin-bottom: 1.6rem;
+            max-height: 44rem;
+            overflow-y: auto;
+
+            &::-webkit-scrollbar-button {
+            display: none;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: ${({ theme }) => theme.COLORS.BLUE_200};
+            border-radius: 1rem;
+        }
+
+        &::-webkit-scrollbar {
+            width: .6rem;
+            background-color: transparent;
+        }
+        }
     }
 
 `
@@ -158,6 +184,7 @@ export const Payment = styled.div`
             border: var(--border);
             padding: 2rem;
 
+
             display: flex;
             align-items: center;
             justify-content: center;
@@ -171,6 +198,10 @@ export const Payment = styled.div`
                 margin-bottom: .8rem;
                 max-height: 19rem;
                 width: auto;
+            }
+
+            @media (min-width: 960px) {
+                padding: 5.9rem 9.1rem;
             }
         }
     }

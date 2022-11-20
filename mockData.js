@@ -46,6 +46,27 @@ const mockUser = {
                     price: 17,
                     picture: ''
                 },
+                {
+                    id: 5,
+                    name: 'Green Salad',
+                    quantity: 2,
+                    price: 17,
+                    picture: ''
+                },
+                {
+                    id: 6,
+                    name: 'Green Salad',
+                    quantity: 2,
+                    price: 17,
+                    picture: ''
+                },
+                {
+                    id: 7,
+                    name: 'Green Salad',
+                    quantity: 2,
+                    price: 17,
+                    picture: ''
+                },
             ],
             status: 'Pendente',
             price: 58,
