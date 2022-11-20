@@ -228,9 +228,13 @@ export const CreditPayment = styled.div`
     }
 `
 
-export const CheckoutPayment = styled.div`
+export const SVGPaymentTemplate = styled.div`
     svg {
         height: 10.4rem;
         margin-bottom: 3.2rem;
+    }
+
+    p {
+        font-size: clamp(1.6rem, 3vw, 2.4rem);
     }
 `

@@ -68,7 +68,7 @@ const mockUser = {
                     picture: ''
                 },
             ],
-            status: 'Pendente',
+            status: 1,
             price: 58,
             created_at: '27 Dec 2021 15:00 LT',
             updated_at: '27 Dec 2021 15:00 LT',
