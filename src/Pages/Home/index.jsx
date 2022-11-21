@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 
 import { Header } from '../../Components/Header';
 import { Footer } from '../../Components/Footer';
-import ImageSlider from "../../Components/ImageSlider";
 
 import banner from '../../assets/banner.png';
 
