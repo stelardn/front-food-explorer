@@ -5,7 +5,8 @@ const mockMeals = [
         ingredients: ['frango', 'alface', 'tomate'],
         price: 24,
         description: 'Alface, tomate, tiras de frango, torradas em cubos e molho Caesar.',
-        picture: ''
+        picture: 'pic1.png',
+        type: 'main'
     },
     {
         id: 2,
@@ -13,7 +14,17 @@ const mockMeals = [
         ingredients: ['alface', 'tomate cereja', 'palmito', 'rúcula'],
         price: 24,
         description: 'Alface, tomate, tiras de frango, torradas em cubos e molho Caesar.',
-        picture: ''
+        picture: 'pic1.png',
+        type: 'beverage'
+    },
+    {
+        id: 3,
+        name: 'Salada Mediterrânea',
+        ingredients: ['alface', 'tomate cereja', 'palmito', 'rúcula'],
+        price: 24,
+        description: 'Alface, tomate, tiras de frango, torradas em cubos e molho Caesar.',
+        picture: 'pic1.png',
+        type: 'desert'
     },
 
 ];

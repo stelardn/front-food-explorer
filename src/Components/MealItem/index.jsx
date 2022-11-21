@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { Container } from "./styles";
 
-import { QtyInput } from "../../Components/QtyInput";
-import { PriceTag } from "../../Components/PriceTag";
-import { TextButton } from '../../Components/TextButton';
+import { QtyInput } from "../QtyInput";
+import { PriceTag } from "../PriceTag";
+import { TextButton } from '../TextButton';
 
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 
 import mealPicture from '../../assets/pic1.png';
 
 
-export function ViewMeal({ data }) {
+export function MealItem({ data }) {
     const [amount, setAmount] = useState(1);
     const [favorite, setFavorite] = useState(false);
 
@@ -32,17 +32,15 @@ export function ViewMeal({ data }) {
         favorite ? setFavorite(false) : setFavorite(true)
     }
 
-    //useffect para data
-
     return (
         <Container>
             <button onClick={handleFavorite}>
                 {favorite ? <FaHeart /> : <FaRegHeart />}
             </button>
-            <img src={mealPicture} />
-            <h3>Salada Ravanello</h3>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus, excepturi nesciunt. Soluta minima reprehenderit dolor fuga at eum consectetur esse perspiciatis distinctio deleniti maiores itaque dolore omnis ea, et nemo.</p>
-            <PriceTag />
+            <img src={mealPicture} alt='Imagem do prato'/>
+            <h3>{data.name}</h3>
+            <p>{data.description}</p>
+            <PriceTag price={data.price}/>
             <div className="include-amount">
                 <QtyInput handleAdd={handleAdd} handleMinus={handleMinus} amount={amount} />
                 <TextButton content='incluir' />

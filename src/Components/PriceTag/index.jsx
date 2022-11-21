@@ -1,9 +1,9 @@
 import { Container } from "./styles";
 
-export function PriceTag() {
+export function PriceTag({price}) {
     return (
         <Container>
-            <div>R$ 49,97</div>
+            <div>R$ {String(price).padStart(2, '0')}</div>
         </Container>
     )
 }
