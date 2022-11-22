@@ -1,4 +1,4 @@
-const mockMeals = [
+const mockMeals = [ 
     {
         id: 1,
         name: 'Salada Caesar',
