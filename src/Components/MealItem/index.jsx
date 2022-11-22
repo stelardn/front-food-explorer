@@ -10,7 +10,7 @@ import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import mealPicture from '../../assets/pic1.png';
 
 
-export function MealItem({ data }) {
+export function MealItem({ data }) { 
     const [amount, setAmount] = useState(1);
     const [favorite, setFavorite] = useState(false);
 
@@ -37,7 +37,7 @@ export function MealItem({ data }) {
             <button onClick={handleFavorite}>
                 {favorite ? <FaHeart /> : <FaRegHeart />}
             </button>
-            <img src={mealPicture} alt='Imagem do prato'/>
+            <img src={`../../${data.picture}`} alt='Imagem do prato'/>
             <h3>{data.name}</h3>
             <p>{data.description}</p>
             <PriceTag price={data.price}/>

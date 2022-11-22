@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 
 import { Header } from '../../Components/Header';
 import { Footer } from '../../Components/Footer';
+import { CarouselComponent } from '../../Components/CarouselComponent';
 
 import banner from '../../assets/banner.png';
 
@@ -31,7 +32,7 @@ export function Home() {
             <main>
                 <section>
                     <h2>Pratos principais</h2>
-                    {/* <ImageSlider images={images}/> */}
+                    <CarouselComponent meals={meals}/>
                 </section>
             </main>
             <Footer />
