@@ -1,7 +1,6 @@
 export default {
     COLORS: {
         BLACK: '#00070A',
-        // '#000A0F',
 
         BLUE_1000: '#000C12',
         BLUE_900: '#001119',
@@ -10,6 +9,8 @@ export default {
         BLUE_600: '#192227',
         BLUE_200: '#065E7C',
         BLUE_100: '#82F3FF',
+        
+        GRADIENT_BLUE: '#000A0F',
 
         GREEN: '#04D361',
 

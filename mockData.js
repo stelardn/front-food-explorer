@@ -26,6 +26,33 @@ const mockMeals = [
         picture: 'pic1.png',
         type: 'desert'
     },
+    {
+        id: 4,
+        name: 'Salada Caesar',
+        ingredients: ['frango', 'alface', 'tomate'],
+        price: 24,
+        description: 'Alface, tomate, tiras de frango, torradas em cubos e molho Caesar.',
+        picture: 'pic1.png',
+        type: 'main'
+    },
+    {
+        id: 5,
+        name: 'Salada Caesar',
+        ingredients: ['frango', 'alface', 'tomate'],
+        price: 24,
+        description: 'Alface, tomate, tiras de frango, torradas em cubos e molho Caesar.',
+        picture: 'pic1.png',
+        type: 'main'
+    },
+    {
+        id: 6,
+        name: 'Salada Caesar',
+        ingredients: ['frango', 'alface', 'tomate'],
+        price: 24,
+        description: 'Alface, tomate, tiras de frango, torradas em cubos e molho Caesar.',
+        picture: 'pic1.png',
+        type: 'main'
+    },
 
 ];
 

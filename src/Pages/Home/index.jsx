@@ -20,21 +20,23 @@ export function Home() {
     return (
         <Container>
             <Header />
-            <section id="banner">
-                <section id="hero">
-                    <img src={banner} alt='Imagem de ingredientes coloridos com um efeito de espalhamento no ar.' />
-                    <section id="headlines">
-                        <h1>Sabores inigualáveis</h1>
-                        <p>Sinta o cuidado do preparo com ingredientes selecionados.</p>
+            <div id="page">
+                <section id="banner">
+                    <section id="hero">
+                        <img src={banner} alt='Imagem de ingredientes coloridos com um efeito de espalhamento no ar.' />
+                        <section id="headlines">
+                            <h1>Sabores inigualáveis</h1>
+                            <p>Sinta o cuidado do preparo com ingredientes selecionados.</p>
+                        </section>
                     </section>
                 </section>
-            </section>
-            <main>
-                <section>
-                    <h2>Pratos principais</h2>
-                    <CarouselComponent meals={meals}/>
-                </section>
-            </main>
+                <main>
+                    <section>
+                        <h2>Pratos principais</h2>
+                        <CarouselComponent meals={meals}/>
+                    </section>
+                </main>
+            </div>
             <Footer />
         </Container>
     )

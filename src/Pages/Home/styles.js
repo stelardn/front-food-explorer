@@ -1,10 +1,52 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    display: grid;
-    grid-template-rows: 9.6rem auto 7.8rem;
+    #page {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
 
+        /* overflow-y: hidden; */
+        
+    }
     #banner {
+            padding: 2rem;
+            #hero {
+                > img {
+                    display: none;
+                }
+
+                #headlines {
+                    font-family: 'Poppins', sans-serif;
+                    text-align: left;
+
+                    
+                    h1 {
+                        font-size: clamp(2.4rem, 2vw, 4rem);
+                        font-weight: 500;
+                    }
+
+                    p {
+                        font-size: clamp(1.2rem, 2vw, 1.6rem);
+                        line-height: 2.24rem;
+                    }
+                }
+            }
+        }
+
+        main {
+            h2 {
+                padding: 0 2rem;
+
+            }
+
+        }
+
+    /* display: grid;
+    grid-template-rows: 9.6rem auto 7.8rem; */
+
+    /* #banner {
         
 
         display: flex;
@@ -38,12 +80,8 @@ export const Container = styled.div`
             #headlines {             
                 padding: 4.6rem;
 
-                font-family: 'Poppins', sans-serif;
-                text-align: left;
-                
                 h1 {
                     font-size: 4rem;
-                    font-weight: 500;
                     line-height: 5.6rem;
                 }
 
@@ -51,7 +89,8 @@ export const Container = styled.div`
                     font-size: 1.6rem;
                     line-height: 2.24rem;
                 }
+                
             }
         }
-    }
+    } */
 `
