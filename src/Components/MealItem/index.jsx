@@ -5,12 +5,12 @@ import { QtyInput } from "../QtyInput";
 import { PriceTag } from "../PriceTag";
 import { TextButton } from '../TextButton';
 
-import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { FaHeart, FaRegHeart, FaAngleRight } from 'react-icons/fa';
 
 import mealPicture from '../../assets/pic1.png';
 
 
-export function MealItem({ data }) { 
+export function MealItem({ data, className }) { 
     const [amount, setAmount] = useState(1);
     const [favorite, setFavorite] = useState(false);
 
@@ -33,12 +33,13 @@ export function MealItem({ data }) {
     }
 
     return (
-        <Container>
-            <button onClick={handleFavorite}>
-                {favorite ? <FaHeart /> : <FaRegHeart />}
-            </button>
+        <Container className={className}>
+            {favorite ? <FaHeart size={32} onClick={handleFavorite} /> : <FaRegHeart size={32} onClick={handleFavorite} />}
             <img src={`../../${data.picture}`} alt='Imagem do prato'/>
-            <h3>{data.name}</h3>
+            <div id="title">
+                <h3>{data.name}</h3>
+                <FaAngleRight/>
+            </div>
             <p>{data.description}</p>
             <PriceTag price={data.price}/>
             <div className="include-amount">

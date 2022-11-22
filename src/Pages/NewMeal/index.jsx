@@ -82,6 +82,7 @@ export function NewMeal() {
                         </label>
                         <input id='pick-image' type='file' onChange={handleAddPicture}/>
                         <Input label='Nome' placeholder='Ex.: Salada Caesar' />
+                        {/* max name should be 18 chars */}
                     </div>
                     <div id="second-row">
                         <div id="ingredients">
