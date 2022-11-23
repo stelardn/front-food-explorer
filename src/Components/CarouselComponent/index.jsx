@@ -14,13 +14,13 @@ export function CarouselComponent({meals, className}) {
         <Container className={className}>
             <AliceCarousel
                 disableDotsControls
-                infinite
-                paddingRight={150}
-                renderPrevButton={() => <FaAngleRight className="prev-btn" size={40}/>}
+                renderPrevButton={() => <FaAngleLeft className="prev-btn" size={40}/>}
                 renderNextButton={() => <FaAngleRight className="next-btn" size={40}/>}
                 responsive={{
                     0: { items: 1 },
-                    1024: { items: 3 }
+                    768: { items: 2 },
+                    1024: { items: 3 },
+                    1440: { items: 3.47 }
                 }}
                 items={meals.map(item => (
                     <MealItem key={item.id} data={item}/>

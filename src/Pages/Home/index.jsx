@@ -13,9 +13,9 @@ import { mockMeals } from '../../../mockData';
 export function Home() {
     const [meals, setMeals] = useState(mockMeals);
 
-    useEffect(() => {
-        setMeals(mockMeals);
-    }, []);
+    // useEffect(() => {
+    //     setMeals(mockMeals);
+    // }, []);
     
     return (
         <Container>
@@ -33,6 +33,14 @@ export function Home() {
                 <main>
                     <section>
                         <h2>Pratos principais</h2>
+                        <CarouselComponent meals={meals}/>
+                    </section>
+                    <section>
+                        <h2>Sobremesas</h2>
+                        <CarouselComponent meals={meals}/>
+                    </section>
+                    <section>
+                        <h2>Bebidas</h2>
                         <CarouselComponent meals={meals}/>
                     </section>
                 </main>
