@@ -12,10 +12,24 @@ import { mockMeals } from '../../../mockData';
 
 export function Home() {
     const [meals, setMeals] = useState(mockMeals);
+    const [mealTypes, setMealTypes] = useState(new Set(meals.map(meal => meal.type)));
 
-    // useEffect(() => {
-    //     setMeals(mockMeals);
-    // }, []);
+    useEffect(() => {
+        setMeals(mockMeals);
+
+        setMealTypes(new Set(meals.map(meal => meal.type)));
+        console.log(mealTypes);
+
+    }, []);
+
+    function capitalize(str) {
+        const firstLetter = str[0].toUpperCase();
+
+        const otherLetters = str.slice(1);
+
+        return firstLetter + otherLetters;
+
+    }
     
     return (
         <Container>
@@ -31,18 +45,14 @@ export function Home() {
                     </section>
                 </section>
                 <main>
-                    <section>
-                        <h2>Pratos principais</h2>
-                        <CarouselComponent meals={meals}/>
-                    </section>
-                    <section>
-                        <h2>Sobremesas</h2>
-                        <CarouselComponent meals={meals}/>
-                    </section>
-                    <section>
-                        <h2>Bebidas</h2>
-                        <CarouselComponent meals={meals}/>
-                    </section>
+                    {
+                        [...mealTypes].map(type => (
+                        <section>
+                            <h2>{capitalize(type)}</h2>
+                            <CarouselComponent meals={meals.filter(meal => meal.type === type)}/>
+                        </section> 
+                        ))
+                    }
                 </main>
             </div>
             <Footer />
