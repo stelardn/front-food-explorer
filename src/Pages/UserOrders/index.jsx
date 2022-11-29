@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 
-import { Container, Main } from "./styles";
+import { Container, MainWide, MainMobile } from "./styles";
 
 import {Header} from '../../Components/Header';
 import {Footer} from '../../Components/Footer';
+import {OrderItemMobile} from '../../Components/OrderItemMobile';
 
 import {mockUser} from '../../../mockData';
 
@@ -21,13 +22,13 @@ export function UserOrders() {
     return (
         <Container>
             <Header />
-            <Main>
+            <MainWide>
                 <h1>Pedidos</h1>
 				<div className="table-scroll">
 					<table>
 						<thead>
 							<tr>
-								<th>Status</th>
+								<th className="status">Status</th>
 								<th>Código</th>
 								<th>Detalhamento</th>
 								<th>Data e hora</th>
@@ -36,36 +37,43 @@ export function UserOrders() {
 						<tbody>
 							{user.orders.map(order => (
 								<tr key={String(order.id)}>
-									<td className="status" key={`${String(order.id)}.st`}>
 									{
 										(() => {
 											switch(order.status) {
-													
-												case('Preparando'): {
-														return (
-															<FaCircle size={8} color='orange' />
+												
+												case(3): {
+													return (
+															<td className="status" key={`${String(order.id)}.st`}>
+																<FaCircle size={8} color='orange' />
+																Preparando
+															</td>
 														)
 													}
 												break;
 													
-												case('Entregue'): {
+												case(4): {
 													return (
-														<FaCircle size={8} color='green' />
+															<td className="status" key={`${String(order.id)}.st`}>
+																<FaCircle size={8} color='green' />
+																Entregue
+															</td>
 													)
 												}
 												break;
 												
 												default: {
 														return (
-															<FaCircle size={8} color='red' />
+															<td className="status" key={`${String(order.id)}.st`}>
+																<FaCircle size={8} color='red' />
+																Pendente
+															</td>
 														)
 													}
 												break;
 												}
 										})()  
 									}  
-										{order.status}
-									</td>
+									
 									<td className="code" key={`${String(order.id)}.id`}>
 										{order.id}
 									</td>
@@ -83,7 +91,15 @@ export function UserOrders() {
 						</tbody>
 					</table>
 				</div>
-            </Main>
+            </MainWide>
+			<MainMobile>
+				<h1>Pedidos</h1>
+				{
+					user.orders.map(order => (
+						<OrderItemMobile order={order} />
+					))
+				}
+			</MainMobile>
             <Footer />
         </Container>
     )
