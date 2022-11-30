@@ -25,6 +25,7 @@ export function SignIn() {
                     content='Entrar'
                 />
                 <LinkButton
+                    
                     content='Criar uma conta'
                 />
             </ContainerForm>
