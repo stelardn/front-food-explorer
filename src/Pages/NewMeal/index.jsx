@@ -1,11 +1,11 @@
 import { Container, SelectImage } from "./styles";
 
-import { HeaderAdm } from "../../Components/HeaderAdm";
-import { Footer } from "../../Components/Footer";
-import { Input } from '../../Components/Input';
-import { LinkButton } from "../../Components/LinkButton";
-import { Ingredient } from "../../Components/Ingredient";
-import { TextButton } from "../../Components/TextButton";
+import { HeaderAdm } from "../../components/HeaderAdm";
+import { Footer } from "../../components/Footer";
+import { Input } from '../../components/Input';
+import { LinkButton } from "../../components/LinkButton";
+import { Ingredient } from "../../components/Ingredient";
+import { TextButton } from "../../components/TextButton";
 
 import { FaAngleLeft, FaUpload } from "react-icons/fa";
 import { useState } from "react";

@@ -10,26 +10,12 @@ import banner from '../../assets/banner.png';
 
 import { mockMeals } from '../../../mockData';
 
-export function Home() {
-    const [meals, setMeals] = useState(mockMeals);
-    const [mealTypes, setMealTypes] = useState(new Set(meals.map(meal => meal.type)));
+export function Favorites() {
+    const [favorites, setFavorites] = useState(mockMeals);
 
     useEffect(() => {
-        setMeals(mockMeals);
-
-        setMealTypes(new Set(meals.map(meal => meal.type)));
-        console.log(mealTypes);
-
-    }, []);
-
-    function capitalize(str) {
-        const firstLetter = str[0].toUpperCase();
-
-        const otherLetters = str.slice(1);
-
-        return firstLetter + otherLetters;
-
-    }
+        setFavorites(mockMeals);
+    }, [favorites]);
     
     return (
         <Container>
@@ -45,14 +31,10 @@ export function Home() {
                     </section>
                 </section>
                 <main>
-                    {
-                        [...mealTypes].map(type => (
-                        <section>
-                            <h2>{capitalize(type)}</h2>
-                            <CarouselComponent meals={meals.filter(meal => meal.type === type)}/>
-                        </section> 
-                        ))
-                    }
+                    <section>
+                        <h2>Favoritos</h2>
+                        <CarouselComponent meals={favorites}/>
+                    </section> 
                 </main>
             </div>
             <Footer />

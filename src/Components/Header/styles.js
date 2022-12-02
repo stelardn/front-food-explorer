@@ -63,11 +63,20 @@ export const ContainerMobile = styled.div`
         padding: 12px;
     }
 
+    .logo-btn {
+        padding: 0;
+        background-color: transparent;
+        border: none;
+
+        svg {
+            width: 3.2rem;
+            height: 3.2rem;
+        }
+    }
+
     > svg {
         width: 3.2rem;
         height: 3.2rem;
-
-        cursor: pointer;
     }
 
 `
@@ -90,7 +99,7 @@ export const ContainerDesktop = styled.div`
 
 
 
-    > div:first-of-type {
+    > button:first-of-type {
         gap: 1rem;
 
         h1 {
@@ -103,7 +112,7 @@ export const ContainerDesktop = styled.div`
         }
     }
 
-    > div:nth-of-type(2) {
+    > div:nth-of-type(1) {
         display: flex;
         justify-content: left;
         align-items: center;

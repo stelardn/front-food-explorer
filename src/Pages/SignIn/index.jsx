@@ -1,8 +1,8 @@
 import { Container, ContainerForm, ContainerLogo } from "./styles";
-import { Input } from "../../Components/Input";
-import { TextButton } from "../../Components/TextButton";
-import { LinkButton } from "../../Components/LinkButton";
-import { Logo } from "../../Components/Logo";
+import { Input } from "../../components/Input";
+import { TextButton } from "../../components/TextButton";
+import { LinkButton } from "../../components/LinkButton";
+import { Logo } from "../../components/Logo";
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";

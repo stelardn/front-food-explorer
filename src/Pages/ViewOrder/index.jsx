@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 
 import { Container, MyOrder, OrderItem, Payment, SVGPaymentTemplate, CreditPayment } from "./styles";
 
-import { Header } from "../../Components/Header";
-import { Footer } from "../../Components/Footer";
-import { Input } from '../../Components/Input';
-import { TextButton } from "../../Components/TextButton";
+import { Header } from "../../components/Header";
+import { Footer } from "../../components/Footer";
+import { Input } from '../../components/Input';
+import { TextButton } from "../../components/TextButton";
 
 import { FiCreditCard, FiClock, FiCheckCircle } from "react-icons/fi";
 import { BsXDiamond}  from 'react-icons/bs';

@@ -7,7 +7,7 @@ export function Input({ label, type, placeholder, ...rest }) {
       {type === "textarea" ? (
         <textarea placeholder={placeholder} {...rest} />
       ) : (
-        <input placeholder={placeholder} {...rest} />
+        <input placeholder={placeholder} type={type} {...rest} />
       )}
     </Container>
   );

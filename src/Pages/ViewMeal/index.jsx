@@ -3,12 +3,12 @@ import { useNavigate } from 'react-router-dom';
 
 import { Container, Main } from "./styles";
 
-import { QtyInput } from "../../Components/QtyInput";
-import { PriceTag } from "../../Components/PriceTag";
-import { TextButton } from '../../Components/TextButton';
-import { Header } from '../../Components/Header';
-import { Footer } from '../../Components/Footer';
-import { LinkButton } from "../../Components/LinkButton";
+import { QtyInput } from "../../components/QtyInput";
+import { PriceTag } from "../../components/PriceTag";
+import { TextButton } from '../../components/TextButton';
+import { Header } from '../../components/Header';
+import { Footer } from '../../components/Footer';
+import { LinkButton } from "../../components/LinkButton";
 
 import alface from '../../assets/alface.png';
 

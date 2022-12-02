@@ -28,6 +28,17 @@ function AuthProvider({ children }) {
     }
   }
 
+  function signOff() {
+    localStorage.removeItem("@foodexplorer:user");
+    localStorage.removeItem("@foodexplorer:token");
+
+    api.defaults.headers.common["Authorization"] = '';
+
+    setData({});
+
+    return;
+  }
+
   useEffect(() => {
     const savedUser = localStorage.getItem("@foodexplorer:user");
     const savedToken = localStorage.getItem("@foodexplorer:token");
@@ -44,6 +55,7 @@ function AuthProvider({ children }) {
     <AuthContext.Provider
       value={{
         signIn,
+        signOff,
         user: data.user,
       }}
     >
