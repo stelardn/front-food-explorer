@@ -36,14 +36,16 @@ export function Home() {
             setMeals([...savedMeals]);
 
             console.log(meals);
-
-            setMealTypes(new Set(meals.map(meal => meal.type)))
-
-            console.log(mealTypes);
         }
 
         fetchMeals();
     }, [])
+
+    useEffect(() => {
+        setMealTypes(new Set(meals.map(meal => meal.type)))
+
+        console.log(mealTypes);
+    }, [meals])
 
     return (
         <Container>
