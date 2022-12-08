@@ -9,14 +9,36 @@ import { CarouselComponent } from '../../components/CarouselComponent';
 import banner from '../../assets/banner.png';
 
 import { mockMeals } from '../../../mockData';
+import { api } from "../../services/api";
 
 export function Favorites() {
-    const [favorites, setFavorites] = useState(mockMeals);
+    const [meals, setMeals] = useState([]);
+    const [removedMeal, setRemovedMeal] = useState(false);
+
+    function handleRemoveMeal() {
+        setRemovedMeal(true);
+    }
 
     useEffect(() => {
-        setFavorites(mockMeals);
-    }, [favorites]);
-    
+        async function fetchMeals() {
+            const response = await api.get('/favorites');
+
+            const favoriteMeals = response.data.map(meal => {
+                return {
+                    ...meal,
+                    id: meal.meal_id,
+                    isFavorite: true
+                }
+            });
+
+            setRemovedMeal(false);
+            setMeals([...favoriteMeals]);
+        }
+
+        fetchMeals();
+
+    }, [removedMeal]);
+
     return (
         <Container>
             <Header />
@@ -33,8 +55,8 @@ export function Favorites() {
                 <main>
                     <section>
                         <h2>Favoritos</h2>
-                        <CarouselComponent meals={favorites}/>
-                    </section> 
+                        {meals && <CarouselComponent meals={meals} onHeartClick={handleRemoveMeal} />}
+                    </section>
                 </main>
             </div>
             <Footer />

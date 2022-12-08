@@ -9,13 +9,13 @@ import 'react-alice-carousel/lib/alice-carousel.css';
 
 import { MealItem } from '../MealItem';
 
-export function CarouselComponent({meals, className}) {
+export function CarouselComponent({ meals, className, onHeartClick }) {
     return (
-        <Container className={className}>
+        <Container className={className} >
             <AliceCarousel
                 disableDotsControls
-                renderPrevButton={() => <FaAngleLeft className="prev-btn" size={40}/>}
-                renderNextButton={() => <FaAngleRight className="next-btn" size={40}/>}
+                renderPrevButton={() => <FaAngleLeft className="prev-btn" size={40} />}
+                renderNextButton={() => <FaAngleRight className="next-btn" size={40} />}
                 responsive={{
                     0: { items: 1 },
                     768: { items: 2 },
@@ -23,10 +23,10 @@ export function CarouselComponent({meals, className}) {
                     1440: { items: 3.47 }
                 }}
                 items={meals.map(item => (
-                    <MealItem key={item.id} data={item}/>
+                    <MealItem key={item.id} data={item} onHeartClick={onHeartClick} />
                 ))
                 }
-                
+
             />
         </Container>
     );

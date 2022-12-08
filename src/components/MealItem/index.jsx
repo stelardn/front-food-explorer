@@ -11,7 +11,7 @@ import mealPicture from '../../assets/pic1.png';
 import { api } from "../../services/api";
 
 
-export function MealItem({ data, className }) {
+export function MealItem({ data, className, onHeartClick }) {
     const [amount, setAmount] = useState(1);
     const [favorite, setFavorite] = useState(data.isFavorite);
 
@@ -33,7 +33,8 @@ export function MealItem({ data, className }) {
         if (favorite) {
             api.delete(`/favorites/${data.id}`)
                 .then(() => {
-                    alert(`${data.name} removido dos favoritos!`)
+                    alert(`${data.name} - ${data.id} removido dos favoritos!`)
+                    onHeartClick();
                     setFavorite(false);
                 })
                 .catch((error) => alert(`${error.toString()}`))
