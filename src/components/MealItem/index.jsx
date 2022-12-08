@@ -8,11 +8,12 @@ import { TextButton } from '../TextButton';
 import { FaHeart, FaRegHeart, FaAngleRight } from 'react-icons/fa';
 
 import mealPicture from '../../assets/pic1.png';
+import { api } from "../../services/api";
 
 
-export function MealItem({ data, className }) { 
+export function MealItem({ data, className }) {
     const [amount, setAmount] = useState(1);
-    const [favorite, setFavorite] = useState(false);
+    const [favorite, setFavorite] = useState(data.isFavorite);
 
     function handleAdd() {
         if (amount != 99) {
@@ -29,19 +30,33 @@ export function MealItem({ data, className }) {
     }
 
     function handleFavorite() {
-        favorite ? setFavorite(false) : setFavorite(true)
+        if (favorite) {
+            api.delete(`/favorites/${data.id}`)
+                .then(() => {
+                    alert(`${data.name} removido dos favoritos!`)
+                    setFavorite(false);
+                })
+                .catch((error) => alert(`${error.toString()}`))
+        } else {
+            api.post('/favorites', { meal_id: data.id })
+                .then(() => {
+                    alert(`${data.name} adicionado aos favoritos!`)
+                    setFavorite(true);
+                })
+                .catch((error) => alert(`${error.toString()}`))
+        }
     }
 
     return (
         <Container className={className}>
             {favorite ? <FaHeart size={32} onClick={handleFavorite} /> : <FaRegHeart size={32} onClick={handleFavorite} />}
-            <img src={`../../${data.picture}`} alt='Imagem do prato'/>
+            <img src={`../../${data.picture}`} alt='Imagem do prato' />
             <div id="title">
                 <h3>{data.name}</h3>
-                <FaAngleRight/>
+                <FaAngleRight />
             </div>
             <p>{data.description}</p>
-            <PriceTag price={data.price}/>
+            <PriceTag price={data.price} />
             <div className="include-amount">
                 <QtyInput handleAdd={handleAdd} handleMinus={handleMinus} amount={amount} />
                 <TextButton content='incluir' />

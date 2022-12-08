@@ -15,6 +15,7 @@ export function Home() {
 
     const [meals, setMeals] = useState([]);
     const [mealTypes, setMealTypes] = useState([]);
+    const [favorites, setFavorites] = useState([]);
 
     function capitalize(str) {
         const firstLetter = str[0].toUpperCase();
@@ -28,24 +29,25 @@ export function Home() {
         async function fetchMeals() {
             const mealsResponse = await api.get("/meals");
 
-            console.log(mealsResponse.data);
-
             const savedMeals = mealsResponse.data;
 
-
             setMeals([...savedMeals]);
-
-            console.log(meals);
         }
 
         fetchMeals();
-    }, [])
+
+    }, [favorites]);
+
+    useEffect(() => {
+        const favoriteMeals = meals.filter(meal => meal.isFavorite === true);
+
+        setFavorites(favoriteMeals);
+    }, []);
+
 
     useEffect(() => {
         setMealTypes(new Set(meals.map(meal => meal.type)))
-
-        console.log(mealTypes);
-    }, [meals])
+    }, [meals]);
 
     return (
         <Container>
