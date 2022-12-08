@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { SignIn } from "../pages/SignIn";
 import { api } from "../services/api";
 
@@ -13,17 +14,28 @@ function AuthProvider({ children }) {
 
       const { token, user } = response.data;
 
-      setData({ token, user });
-
       localStorage.setItem("@foodexplorer:user", JSON.stringify(user));
       localStorage.setItem("@foodexplorer:token", token);
 
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+
+      const mealsResponse = await api.get("/meals");
+
+      const meals = mealsResponse.data;
+
+      console.log(mealsResponse.data);
+
+      setData({ token, user, meals });
+
+      localStorage.setItem("@foodexplorer:meals", JSON.stringify(meals));
+
     } catch (error) {
       if (error.response) {
         return alert(error.response.data.message);
       }
 
+      // return alert(error.toString());
       return alert("Não foi possível logar. Tente novamente.");
     }
   }
@@ -31,6 +43,7 @@ function AuthProvider({ children }) {
   function signOff() {
     localStorage.removeItem("@foodexplorer:user");
     localStorage.removeItem("@foodexplorer:token");
+    localStorage.removeItem("@foodexplorer:meals");
 
     api.defaults.headers.common["Authorization"] = '';
 
@@ -39,17 +52,37 @@ function AuthProvider({ children }) {
     return;
   }
 
+  // async function updateOrder({ order_id, meal_id, quantity }) {
+  //   try {
+  //     const response = await api.put(`/${order_id}`, {
+  //       meal_id, quantity
+  //     });
+
+  //     const user = await api.get(`/users/${user.id}`);
+
+
+
+
+
+  //   } catch (_error) {
+  //     return alert('Não foi possível atualizar o carrinho.');
+  //   }
+  // }
+
   useEffect(() => {
     const savedUser = localStorage.getItem("@foodexplorer:user");
     const savedToken = localStorage.getItem("@foodexplorer:token");
+    const savedMeals = localStorage.getItem("@foodexplorer:meals");
 
     setData({
       user: JSON.parse(savedUser),
+      meals: JSON.parse(savedMeals),
       token: savedToken,
     });
 
-    api.defaults.headers.common["Authorization"] = `Beares ${savedToken}`;
+    api.defaults.headers.common["Authorization"] = `Bearer ${savedToken}`;
   }, []);
+
 
   return (
     <AuthContext.Provider
@@ -57,6 +90,7 @@ function AuthProvider({ children }) {
         signIn,
         signOff,
         user: data.user,
+        meals: data.meals
       }}
     >
       {children}

@@ -8,19 +8,13 @@ import { CarouselComponent } from '../../components/CarouselComponent';
 
 import banner from '../../assets/banner.png';
 
-import { mockMeals } from '../../../mockData';
+import { useAuth } from "../../hooks/auth";
+import { api } from "../../services/api";
 
 export function Home() {
-    const [meals, setMeals] = useState(mockMeals);
-    const [mealTypes, setMealTypes] = useState(new Set(meals.map(meal => meal.type)));
 
-    useEffect(() => {
-        setMeals(mockMeals);
-
-        setMealTypes(new Set(meals.map(meal => meal.type)));
-        console.log(mealTypes);
-
-    }, []);
+    const [meals, setMeals] = useState({});
+    const [mealTypes, setMealTypes] = useState();
 
     function capitalize(str) {
         const firstLetter = str[0].toUpperCase();
@@ -28,9 +22,31 @@ export function Home() {
         const otherLetters = str.slice(1);
 
         return firstLetter + otherLetters;
-
     }
-    
+
+    async function fetchMeals() {
+        try {
+            const mealsResponse = await api.get("/meals");
+
+            console.log(mealsResponse.data);
+
+            const savedMeals = mealsResponse.data;
+
+
+            setMeals(state => (savedMeals));
+
+            console.log(meals);
+        } catch (error) {
+            console.log(error.toString());
+        }
+        // setMealTypes(new Set(meals.map(meal => meal.type)))
+        // console.log(mealTypes);
+    }
+
+    useEffect(() => {
+        fetchMeals();
+    }, [])
+
     return (
         <Container>
             <Header />
@@ -45,14 +61,15 @@ export function Home() {
                     </section>
                 </section>
                 <main>
-                    {
+                    {/* {
+                        mealTypes &&
                         [...mealTypes].map(type => (
-                        <section>
-                            <h2>{capitalize(type)}</h2>
-                            <CarouselComponent meals={meals.filter(meal => meal.type === type)}/>
-                        </section> 
+                            <section>
+                                <h2>{capitalize(type)}</h2>
+                                <CarouselComponent meals={meals.filter(meal => meal.type === type)} />
+                            </section>
                         ))
-                    }
+                    } */}
                 </main>
             </div>
             <Footer />
