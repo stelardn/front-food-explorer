@@ -13,8 +13,8 @@ import { api } from "../../services/api";
 
 export function Home() {
 
-    const [meals, setMeals] = useState({});
-    const [mealTypes, setMealTypes] = useState();
+    const [meals, setMeals] = useState([]);
+    const [mealTypes, setMealTypes] = useState([]);
 
     function capitalize(str) {
         const firstLetter = str[0].toUpperCase();
@@ -24,8 +24,8 @@ export function Home() {
         return firstLetter + otherLetters;
     }
 
-    async function fetchMeals() {
-        try {
+    useEffect(() => {
+        async function fetchMeals() {
             const mealsResponse = await api.get("/meals");
 
             console.log(mealsResponse.data);
@@ -33,17 +33,15 @@ export function Home() {
             const savedMeals = mealsResponse.data;
 
 
-            setMeals(state => (savedMeals));
+            setMeals([...savedMeals]);
 
             console.log(meals);
-        } catch (error) {
-            console.log(error.toString());
-        }
-        // setMealTypes(new Set(meals.map(meal => meal.type)))
-        // console.log(mealTypes);
-    }
 
-    useEffect(() => {
+            setMealTypes(new Set(meals.map(meal => meal.type)))
+
+            console.log(mealTypes);
+        }
+
         fetchMeals();
     }, [])
 
@@ -61,15 +59,14 @@ export function Home() {
                     </section>
                 </section>
                 <main>
-                    {/* {
-                        mealTypes &&
+                    {
                         [...mealTypes].map(type => (
                             <section>
                                 <h2>{capitalize(type)}</h2>
-                                <CarouselComponent meals={meals.filter(meal => meal.type === type)} />
+                                <CarouselComponent meals={meals.filter(meal => meal.type === type)} key={type} />
                             </section>
                         ))
-                    } */}
+                    }
                 </main>
             </div>
             <Footer />
