@@ -52,22 +52,41 @@ function AuthProvider({ children }) {
     return;
   }
 
-  // async function updateOrder({ order_id, meal_id, quantity }) {
-  //   try {
-  //     const response = await api.put(`/${order_id}`, {
-  //       meal_id, quantity
-  //     });
+  async function fetchOrders() {
+    const ordersResponse = await api.get(`/orders?user=${data.user.id}`);
 
-  //     const user = await api.get(`/users/${user.id}`);
+    const userOrders = ordersResponse.data;
 
+    const lastOrder = userOrders[userOrders.length - 1];
 
+    let orderId;
 
+    if (!userOrders[0] || (lastOrder && lastOrder.status !== 1)) {
+      try {
+        const newOrder = await api.post('/orders');
 
+        orderId = newOrder.data[0];
+      } catch (error) {
+        alert(error.toString());
+      }
+    } else {
+      orderId = lastOrder.id;
+    }
 
-  //   } catch (_error) {
-  //     return alert('Não foi possível atualizar o carrinho.');
-  //   }
-  // }
+    const orderResponse = await api.get(`/orders/${orderId}`);
+
+    const currentOrder = {
+      ...orderResponse.data,
+      id: orderId
+    }
+
+    setData({
+      ...data,
+      currentOrder: currentOrder
+    });
+
+    return currentOrder;
+  }
 
   useEffect(() => {
     const savedUser = localStorage.getItem("@foodexplorer:user");
@@ -83,14 +102,15 @@ function AuthProvider({ children }) {
     api.defaults.headers.common["Authorization"] = `Bearer ${savedToken}`;
   }, []);
 
-
   return (
     <AuthContext.Provider
       value={{
         signIn,
         signOff,
+        fetchOrders,
         user: data.user,
-        meals: data.meals
+        meals: data.meals,
+        currentOrder: data.currentOrder
       }}
     >
       {children}

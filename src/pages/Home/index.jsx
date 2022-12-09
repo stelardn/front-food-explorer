@@ -13,9 +13,13 @@ import { api } from "../../services/api";
 
 export function Home() {
 
+    const { fetchOrders } = useAuth();
+
     const [meals, setMeals] = useState([]);
     const [mealTypes, setMealTypes] = useState([]);
     const [favorites, setFavorites] = useState([]);
+    const [currentOrder, setCurrentOrder] = useState();
+
 
     function capitalize(str) {
         const firstLetter = str[0].toUpperCase();
@@ -25,13 +29,38 @@ export function Home() {
         return firstLetter + otherLetters;
     }
 
+    // async function handleCurrentOrder() {
+    //     const current = await fetchOrders();
+
+    //     return current;
+    // }
+
     useEffect(() => {
         async function fetchMeals() {
             const mealsResponse = await api.get("/meals");
 
             const savedMeals = mealsResponse.data;
 
-            setMeals([...savedMeals]);
+            const current = await fetchOrders();
+
+            const mealsWithQuantities = savedMeals.map(meal => {
+                const newMeal = {
+                    ...meal,
+                    quantity: 0
+                }
+
+                current.items.forEach(item => {
+                    if (item.id === meal.id) {
+                        newMeal.quantity = item.quantity
+                    }
+                })
+
+                return newMeal;
+            })
+
+            setMeals([...mealsWithQuantities]);
+            setCurrentOrder(current);
+
         }
 
         fetchMeals();

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Container } from "./styles";
 
 import { QtyInput } from "../QtyInput";
@@ -10,9 +10,14 @@ import { FaHeart, FaRegHeart, FaAngleRight } from 'react-icons/fa';
 import mealPicture from '../../assets/pic1.png';
 import { api } from "../../services/api";
 
+import { useAuth } from '../../hooks/auth';
+
 
 export function MealItem({ data, className, onHeartClick }) {
-    const [amount, setAmount] = useState(1);
+    const { currentOrder } = useAuth();
+
+    const [currentOrderId, setCurrentOrderId] = useState(currentOrder.id);
+    const [amount, setAmount] = useState(data.quantity);
     const [favorite, setFavorite] = useState(data.isFavorite);
 
     function handleAdd() {
@@ -27,6 +32,15 @@ export function MealItem({ data, className, onHeartClick }) {
         if (amount != 1) {
             setAmount(previous => previous - 1);
         }
+    }
+
+    async function handleIncludeInOrder() {
+        const response = await api.put(`/orders/${currentOrderId}`, {
+            quantity: amount,
+            meal_id: data.id
+        });
+
+        alert(response.data.toString());
     }
 
     function handleFavorite() {
@@ -60,7 +74,7 @@ export function MealItem({ data, className, onHeartClick }) {
             <PriceTag price={data.price} />
             <div className="include-amount">
                 <QtyInput handleAdd={handleAdd} handleMinus={handleMinus} amount={amount} />
-                <TextButton content='incluir' />
+                <TextButton content='incluir' onClick={handleIncludeInOrder} />
             </div>
         </Container>
     )
