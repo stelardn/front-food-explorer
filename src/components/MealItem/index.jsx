@@ -11,14 +11,20 @@ import mealPicture from '../../assets/pic1.png';
 import { api } from "../../services/api";
 
 import { useAuth } from '../../hooks/auth';
+import { useNavigate } from "react-router-dom";
 
 
 export function MealItem({ data, className, onHeartClick }) {
     const { currentOrder } = useAuth();
+    const navigate = useNavigate();
 
     const [currentOrderId, setCurrentOrderId] = useState(currentOrder.id);
     const [amount, setAmount] = useState(data.quantity);
     const [favorite, setFavorite] = useState(data.isFavorite);
+
+    function handleGoToMeal() {
+        navigate(`/meals/${data.id}`);
+    }
 
     function handleAdd() {
         if (amount != 99) {
@@ -66,10 +72,10 @@ export function MealItem({ data, className, onHeartClick }) {
         <Container className={className}>
             {favorite ? <FaHeart size={32} onClick={handleFavorite} /> : <FaRegHeart size={32} onClick={handleFavorite} />}
             <img src={`../../${data.picture}`} alt='Imagem do prato' />
-            <div id="title">
-                <h3>{data.name}</h3>
+            <button id="title" onClick={handleGoToMeal}>
+                {data.name}
                 <FaAngleRight />
-            </div>
+            </button>
             <p>{data.description}</p>
             <PriceTag price={data.price} />
             <div className="include-amount">

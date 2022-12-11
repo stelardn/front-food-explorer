@@ -38,15 +38,18 @@ export const Container = styled.div`
 
         overflow-x: visible;
         width: 30rem;
-        
-        h3 {
-            height: 3.36rem;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-            font-size: 2.4rem;
-            line-height: 140%;
-            color: ${({ theme }) => theme.COLORS.GRAY_100};
-        }
+
+        background-color: transparent;
+        border: none;
+
+        height: 3.36rem;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        font-size: 2.4rem;
+        line-height: 140%;
+        color: ${({ theme }) => theme.COLORS.GRAY_100};
+
+        cursor: pointer;
     }
 
     p {

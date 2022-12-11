@@ -40,7 +40,7 @@ export const Container = styled.div`
   }
 
   .alice-carousel__next-btn {
-    right: 3.2rem;
+    right: -3.2rem;
     justify-content: flex-end;
   }
 
