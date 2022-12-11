@@ -13,7 +13,7 @@ export function Routes() {
     <BrowserRouter>
       {(() => {
         if (user) {
-          if (user.isAdmin === true) {
+          if (user.isAdmin === 1) {
             return <AdmRoutes />;
           } else {
             return <UserRoutes />;

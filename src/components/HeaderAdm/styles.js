@@ -94,7 +94,7 @@ export const ContainerDesktop = styled.div`
             flex-wrap: nowrap;
         }
 
-        > div:first-of-type {
+        > button:first-of-type {
             gap: 1rem;
 
             h1 {
