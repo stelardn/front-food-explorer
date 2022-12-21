@@ -1,6 +1,6 @@
 import { Container } from "./styles";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
@@ -19,6 +19,7 @@ export function Home() {
     const [mealTypes, setMealTypes] = useState([]);
     const [favorites, setFavorites] = useState([]);
     const [currentOrder, setCurrentOrder] = useState();
+    const ordersFetchedRef = useRef(false);
 
 
     function capitalize(str) {
@@ -58,6 +59,8 @@ export function Home() {
 
         }
 
+        if (ordersFetchedRef.current) return;
+        ordersFetchedRef.current = true;
         fetchMeals();
 
     }, [favorites]);
