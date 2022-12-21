@@ -44,7 +44,7 @@ export function Header() {
                     <FiSearch />
                     <input placeholder="Busque pelas opções de pratos" />
                 </div>
-                <TextButton icon={TfiReceipt} content='Meu pedido (0)' onClick={() => navigate('/orders')}/>
+                <TextButton icon={TfiReceipt} content='Meus pedidos' onClick={() => navigate('/orders')}/>
                 <FiLogOut onClick={handleSignOff} />
             </ContainerDesktop>
         </Container>

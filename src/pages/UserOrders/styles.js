@@ -71,6 +71,10 @@ export const MainWide = styled.div`
         font-size: clamp(1.2rem, 2vw, 1.4rem);
       }
 
+      .data-row {
+        cursor: pointer;
+      }
+
       td,
       th {
         padding: clamp(0.8rem, 2vh, 1.6rem) clamp(0.8rem, 2vw, 2.4rem);

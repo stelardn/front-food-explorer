@@ -10,14 +10,31 @@ import {mockUser} from '../../../mockData';
 
 import {FaCircle} from 'react-icons/fa';
 
+import { useAuth } from '../../hooks/auth';
+import { api } from "../../services/api";
+import { useNavigate } from "react-router-dom";
+
 export function UserOrders() {
 
-    const [user, setUser] = useState(mockUser);
+	const {user} = useAuth();
+	const navigate = useNavigate();
+
+	const [currentUser, setCurrentUser] = useState(user);
+	const [orders, setOrders] = useState(null);
+
+	function goToOrder(order) {
+		navigate(`/orders/${order.id}`);
+	}
 
     useEffect((() => {
-        setUser(mockUser);
-    }), []);
+		async function fetchData() {
+			const ordersResponse = await api.get(`/orders?user=${currentUser.id}`);
 
+			setOrders([...ordersResponse.data])
+		}
+
+		fetchData();
+    }), [currentUser]);
 
     return (
         <Container>
@@ -35,58 +52,64 @@ export function UserOrders() {
 							</tr>
 						</thead>
 						<tbody>
-							{user.orders.map(order => (
-								<tr key={String(order.id)}>
-									{
-										(() => {
-											switch(order.status) {
-												
-												case(3): {
-													return (
-															<td className="status" key={`${String(order.id)}.st`}>
-																<FaCircle size={8} color='orange' />
-																Preparando
-															</td>
-														)
-													}
-												break;
+							{
+								orders &&
+								orders.map(order => (
+									<tr 
+										className="data-row" 
+										key={String(order.id)}
+										onClick={() => goToOrder(order)}
+									>
+										{
+											(() => {
+												switch(order.status) {
 													
-												case(4): {
-													return (
-															<td className="status" key={`${String(order.id)}.st`}>
-																<FaCircle size={8} color='green' />
-																Entregue
-															</td>
-													)
-												}
-												break;
-												
-												default: {
+													case(3): {
 														return (
-															<td className="status" key={`${String(order.id)}.st`}>
-																<FaCircle size={8} color='red' />
-																Pendente
-															</td>
+																<td className="status" key={`${String(order.id)}.st`}>
+																	<FaCircle size={8} color='orange' />
+																	Preparando
+																</td>
+															)
+														}
+													break;
+														
+													case(4): {
+														return (
+																<td className="status" key={`${String(order.id)}.st`}>
+																	<FaCircle size={8} color='green' />
+																	Entregue
+																</td>
 														)
 													}
-												break;
-												}
-										})()  
-									}  
-									
-									<td className="code" key={`${String(order.id)}.id`}>
-										{order.id}
-									</td>
-									<td className="items" key={`${String(order.id)}.its`}>
-										{order.items.map((item, index) => (
-											index === order.items.length - 1 ? <span key={String(`it.${index}`)}>{item.quantity} x {item.name}</span> : <span key={String(`it.${index}`)}>{item.quantity} x {item.name}, </span>
-											)
-										)}
-									</td>
-									<td className="datetime" key={`${String(order.id)}.dt`}>
-										{order.updated_at}
-									</td>
-								</tr>
+													break;
+													
+													default: {
+															return (
+																<td className="status" key={`${String(order.id)}.st`}>
+																	<FaCircle size={8} color='red' />
+																	Pendente
+																</td>
+															)
+														}
+													break;
+													}
+											})()  
+										}  
+										
+										<td className="code" key={`${String(order.id)}.id`}>
+											{order.id}
+										</td>
+										<td className="items" key={`${String(order.id)}.its`}>
+											{order.items && order.items.map((item, index) => (
+												index === order.items.length - 1 ? <span key={String(`it.${index}`)}>{item.quantity} x {item.name}</span> : <span key={String(`it.${index}`)}>{item.quantity} x {item.name}, </span>
+												)
+											)}
+										</td>
+										<td className="datetime" key={`${String(order.id)}.dt`}>
+											{order.created_at}
+										</td>
+									</tr>
 							))}
 						</tbody>
 					</table>
@@ -95,7 +118,7 @@ export function UserOrders() {
 			<MainMobile>
 				<h1>Pedidos</h1>
 				{
-					user.orders.map(order => (
+					orders && orders.map(order => (
 						<OrderItemMobile order={order} />
 					))
 				}

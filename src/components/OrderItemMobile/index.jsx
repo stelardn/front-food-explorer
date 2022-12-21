@@ -1,7 +1,14 @@
 import { FaCircle } from "react-icons/fa";
 import { Container } from "./styles";
+import { useNavigate } from "react-router-dom";
 
 export function OrderItemMobile({order}) {
+    const navigate = useNavigate();
+
+    function goToOrder(){
+        navigate(`/orders/${order.id}`);
+    }
+
     return (
         <Container>
             {
@@ -37,12 +44,12 @@ export function OrderItemMobile({order}) {
                         }
                 })()
             }
-            <div id="details">
+            <div id="details" onClick={goToOrder}>
                 <p>Nº {order.id}</p>
                 <span>{order.created_at}</span>
             </div>
             <ul id="items">
-            {order.items.map((item, index) => (
+            {order.items && order.items.map((item, index) => (
 				index === order.items.length - 1 ? <span key={String(`it.${index}`)}>{item.quantity} x {item.name}</span> : <span key={String(`it.${index}`)}>{item.quantity} x {item.name}, </span>
 				)
 			)}

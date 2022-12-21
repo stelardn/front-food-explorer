@@ -16,15 +16,44 @@ import { CiForkAndKnife } from 'react-icons/ci'
 import mealImg from '../../assets/pic1.png';
 import { mockUser } from '../../../mockData';
 import qrCode from '../../assets/qrcode.png';
-
-
-
+import { useParams } from "react-router-dom";
+import { useAuth } from "../../hooks/auth";
+import { api } from "../../services/api";
 
 export function ViewOrder(){
 
-    const [order, setOrder] = useState(mockUser.orders[0]);
+	const params = useParams();
+	const {user} = useAuth();
+
+	const [currentUser, setCurrentUser] = useState(user);
+    const [order, setOrder] = useState([]);
     const [paymentStatus, setPaymentStatus] = useState('delivered');
-    const [status, setStatus] = useState(mockUser.orders[0].status);
+    const [status, setStatus] = useState(0);
+
+	async function fetchData() {
+		const orderResponse = await api.get(`/orders/${params.id}`);
+
+		setOrder(orderResponse.data)
+		setStatus(orderResponse.data.status);
+	}
+
+	async function handleRemoveItem(item) {
+		if(status === 3 || status === 4) {
+			return alert ('Não é possível editar um pedido já pago.')
+		}
+		const confirmRemove = window.confirm(`Deseja remover ${item.name} do pedido?`);
+
+		if(confirmRemove) {
+			const response = await api.put(`/orders/${params.id}`, { meal_id: item.id, quantity: 0 });
+
+			alert(response.data);
+
+			await fetchData();
+
+			return;
+		}
+	}
+
 
     function handleSelectPayment(method){
 		if(paymentStatus === 'delivered' || paymentStatus === 'paid'){
@@ -49,15 +78,17 @@ export function ViewOrder(){
         }
     }
 
-
+    useEffect((() => {
+		fetchData();
+    }), []);
 
     useEffect(() => {
 		switch(status){
-			case(2): {
+			case(3): {
 				setPaymentStatus('paid');
 			}
 			break;
-			case(3): {
+			case(4): {
 				setPaymentStatus('delivered');
 			}
 			break;
@@ -65,7 +96,7 @@ export function ViewOrder(){
 				setPaymentStatus('');
 			}
 		}
-    }, [status]);
+    }, [status, order]);
 
 
     return (
@@ -76,7 +107,8 @@ export function ViewOrder(){
                     <h2>Meu pedido</h2>
                     <div id="items-wrapper">
                         {
-                            order.items.map(item => (
+                            order.items && 
+							order.items.map(item => (
                                 <OrderItem key={String(item.id)}>
                                     <img src={mealImg} alt={`Imagem de ${item.name}.`} />
                                     <div className="item-details">
@@ -84,13 +116,17 @@ export function ViewOrder(){
                                             {item.quantity} x {item.name}
                                             <span>R$ {item.price}</span>
                                         </p>
-                                        <button>Excluir</button>
+                                        <button
+											onClick={() => handleRemoveItem(item)}
+										>
+											Excluir
+										</button>
                                     </div>
                                 </OrderItem>
                             ))
                         }
                     </div>
-                    <strong>Total: R$ {order.price}</strong>
+                    <strong>Total: R$ {order && order.price}</strong>
                 </MyOrder>
                 <Payment>
                     <h2>Pagamento</h2>

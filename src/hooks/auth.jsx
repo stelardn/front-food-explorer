@@ -61,7 +61,7 @@ function AuthProvider({ children }) {
 
     let orderId;
 
-    if (!userOrders[0] || (lastOrder && lastOrder.status !== 1)) {
+    if (!userOrders[0] || (lastOrder && (lastOrder.status === 3 || lastOrder.status === 4))) {
       try {
         const newOrder = await api.post('/orders');
 
