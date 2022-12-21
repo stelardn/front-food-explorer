@@ -18,7 +18,7 @@ export const Container = styled.div`
         bottom: 0; */
         width: 100%;
 
-        > div:first-of-type {
+        > button:first-of-type {
             gap: 1rem;
             
             h1 {

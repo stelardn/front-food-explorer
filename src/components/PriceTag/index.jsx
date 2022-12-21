@@ -1,9 +1,17 @@
 import { Container } from "./styles";
 
-export function PriceTag({price}) {
+export function PriceTag({ price }) {
+    function formatNumberToPrice(number) {
+        const numberWithCents = number.toFixed(2);
+
+        const numberToStringWithComma = String(numberWithCents).replace('.', ',');
+
+        return numberToStringWithComma;
+    }
+
     return (
         <Container>
-            <div>R$ {String(price + ',').padEnd(5, '0')}</div>
+            <div>R$ {formatNumberToPrice(price)}</div>
         </Container>
     )
 }

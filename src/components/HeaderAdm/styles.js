@@ -29,33 +29,14 @@ export const ContainerMobile = styled.div`
     align-items: center;
     justify-content: space-around;
 
-    > div:first-of-type {
-        display: flex;
-        justify-content: left;
-        align-items: center;
-        padding: 1.2rem;
-        gap: 0.8rem;
+    .logo-btn {
+        padding: 0;
+        background-color: transparent;
+        border: none;
 
-        width: fit-content;
-
-        border-radius: 5px;
-
-        height: 4.8rem;
-        
-        background: ${({ theme }) => theme.COLORS.BLUE_700};
-        
-        > input {
-            background: none;
-            border: none;
-            width: clamp(8rem, 24vw, 24rem);
-
-            color: ${({ theme }) => theme.COLORS.WHITE};
-            font-family: 'Roboto', sans-serif;
-            font-size: 1.4rem;
-
-            &:focus {
-                outline: none;
-            }
+        svg {
+            width: 3.2rem;
+            height: 3.2rem;
         }
     }
 
