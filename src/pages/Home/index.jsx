@@ -29,12 +29,6 @@ export function Home() {
         return firstLetter + otherLetters;
     }
 
-    // async function handleCurrentOrder() {
-    //     const current = await fetchOrders();
-
-    //     return current;
-    // }
-
     useEffect(() => {
         async function fetchMeals() {
             const mealsResponse = await api.get("/meals");
@@ -42,6 +36,7 @@ export function Home() {
             const savedMeals = mealsResponse.data;
 
             const current = await fetchOrders();
+            console.log('fetched orders');
 
             const mealsWithQuantities = savedMeals.map(meal => {
                 const newMeal = {

@@ -30,8 +30,6 @@ export function UserOrders() {
 		async function fetchData() {
 			const ordersResponse = await api.get(`/orders?user=${currentUser.id}`);
 
-			console.log(ordersResponse.data);
-
 			setOrders([...ordersResponse.data])
 		}
 
