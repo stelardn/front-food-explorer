@@ -13,17 +13,25 @@ import { api } from "../../services/api";
 export function AdmOrders() {
   const [allOrders, setAlllOrders] = useState([]);
 
-  function handleStatus(id, status) {
-    api.patch(`/orders/${id}`, { status })
-      .then(() => alert(`Status do pedido ${id} atualizado.`))
-      .catch(err => alert(error.data.message.toString()))
+  async function fetchAllOrders() {
+    const response = await api.get('/orders');
+
+    console.log(response.data)
+
+    setAlllOrders([...response.data]);
+  }
+
+  async function handleStatus(id, status) {
+    try {
+      const response = await api.patch(`/orders/${id}`, { status });
+      alert(`Status do pedido ${id} atualizado.`);
+      fetchAllOrders();
+    } catch (error) {
+      alert(error.data.message.toString())
+    }
   }
 
   useEffect(() => {
-    async function fetchAllOrders() {
-      const response = await api.get('/orders');
-    }
-
     fetchAllOrders();
   }, []);
 
@@ -44,20 +52,20 @@ export function AdmOrders() {
               </tr>
             </thead>
             <tbody>
-              {userLogged.orders &&
-                userLogged.orders.map((order) => (
+              {allOrders &&
+                allOrders.map((order) => (
                   <tr key={String(order.id)}>
                     <td className="status" key={`${String(order.id)}.st`}>
                       <div>
                         {(() => {
                           switch (order.status) {
-                            case "Preparando":
+                            case 3:
                               {
                                 return <FaCircle size={8} color="orange" />;
                               }
                               break;
 
-                            case "Entregue":
+                            case 4:
                               {
                                 return <FaCircle size={8} color="green" />;
                               }
@@ -71,11 +79,9 @@ export function AdmOrders() {
                           }
                         })()}
                         <select onChange={(e) => handleStatus(order.id, e.target.value)}>
-                          <option value={1}>
-                            <div>Pendente</div>
-                          </option>
-                          <option value={2}>Preparando</option>
-                          <option value={3}>Entregue</option>
+                          <option selected={order.status == 2} value={2}>Pendente</option>
+                          <option selected={order.status == 3} value={3}>Preparando</option>
+                          <option selected={order.status == 4} value={4}>Entregue</option>
                         </select>
                       </div>
                     </td>
