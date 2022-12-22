@@ -5,17 +5,26 @@ import { Container, Main } from "./styles";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 
-import { mockUser } from "../../../mockData";
+import { useAuth } from "../../hooks/auth";
 
 import { FaCircle } from "react-icons/fa";
+import { api } from "../../services/api";
 
 export function AdmOrders() {
-  const [user, setUser] = useState(mockUser);
+  const [allOrders, setAlllOrders] = useState([]);
 
-  function handleStatus(status) {}
+  function handleStatus(id, status) {
+    api.patch(`/orders/${id}`, { status })
+      .then(() => alert(`Status do pedido ${id} atualizado.`))
+      .catch(err => alert(error.data.message.toString()))
+  }
 
   useEffect(() => {
-    setUser(mockUser);
+    async function fetchAllOrders() {
+      const response = await api.get('/orders');
+    }
+
+    fetchAllOrders();
   }, []);
 
   return (
@@ -35,61 +44,62 @@ export function AdmOrders() {
               </tr>
             </thead>
             <tbody>
-              {user.orders.map((order) => (
-                <tr key={String(order.id)}>
-                  <td className="status" key={`${String(order.id)}.st`}>
-                    <div>
-                      {(() => {
-                        switch (order.status) {
-                          case "Preparando":
-                            {
-                              return <FaCircle size={8} color="orange" />;
-                            }
-                            break;
+              {userLogged.orders &&
+                userLogged.orders.map((order) => (
+                  <tr key={String(order.id)}>
+                    <td className="status" key={`${String(order.id)}.st`}>
+                      <div>
+                        {(() => {
+                          switch (order.status) {
+                            case "Preparando":
+                              {
+                                return <FaCircle size={8} color="orange" />;
+                              }
+                              break;
 
-                          case "Entregue":
-                            {
-                              return <FaCircle size={8} color="green" />;
-                            }
-                            break;
+                            case "Entregue":
+                              {
+                                return <FaCircle size={8} color="green" />;
+                              }
+                              break;
 
-                          default:
-                            {
-                              return <FaCircle size={8} color="red" />;
-                            }
-                            break;
-                        }
-                      })()}
-                      <select onChange={(e) => handleStatus(e.target.value)}>
-                        <option value={1}>
-                          <div>Pendente</div>
-                        </option>
-                        <option value={2}>Preparando</option>
-                        <option value={3}>Entregue</option>
-                      </select>
-                    </div>
-                  </td>
-                  <td className="code" key={`${String(order.id)}.id`}>
-                    {order.id}
-                  </td>
-                  <td className="items" key={`${String(order.id)}.its`}>
-                    {order.items.map((item, index) =>
-                      index === order.items.length - 1 ? (
-                        <span key={String(`it.${index}`)}>
-                          {item.quantity} x {item.name}
-                        </span>
-                      ) : (
-                        <span key={String(`it.${index}`)}>
-                          {item.quantity} x {item.name},{" "}
-                        </span>
-                      )
-                    )}
-                  </td>
-                  <td className="datetime" key={`${String(order.id)}.dt`}>
-                    {order.updated_at}
-                  </td>
-                </tr>
-              ))}
+                            default:
+                              {
+                                return <FaCircle size={8} color="red" />;
+                              }
+                              break;
+                          }
+                        })()}
+                        <select onChange={(e) => handleStatus(order.id, e.target.value)}>
+                          <option value={1}>
+                            <div>Pendente</div>
+                          </option>
+                          <option value={2}>Preparando</option>
+                          <option value={3}>Entregue</option>
+                        </select>
+                      </div>
+                    </td>
+                    <td className="code" key={`${String(order.id)}.id`}>
+                      {order.id}
+                    </td>
+                    <td className="items" key={`${String(order.id)}.its`}>
+                      {order.items.map((item, index) =>
+                        index === order.items.length - 1 ? (
+                          <span key={String(`it.${index}`)}>
+                            {item.quantity} x {item.name}
+                          </span>
+                        ) : (
+                          <span key={String(`it.${index}`)}>
+                            {item.quantity} x {item.name},{" "}
+                          </span>
+                        )
+                      )}
+                    </td>
+                    <td className="datetime" key={`${String(order.id)}.dt`}>
+                      {order.updated_at}
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>

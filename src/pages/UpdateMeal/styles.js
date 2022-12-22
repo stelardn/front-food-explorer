@@ -174,7 +174,7 @@ export const SelectImage = styled.div`
         min-width: 22.9rem;
         
         span {
-            line-height: 2.4rem;
+            line-height: 1.4rem;
         }
     }
 `
