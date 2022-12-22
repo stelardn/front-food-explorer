@@ -10,8 +10,11 @@ import banner from '../../assets/banner.png';
 
 import { mockMeals } from '../../../mockData';
 import { api } from "../../services/api";
+import { useAuth } from "../../hooks/auth";
 
 export function Favorites() {
+    const { fetchOrders } = useAuth();
+
     const [meals, setMeals] = useState([]);
     const [removedMeal, setRemovedMeal] = useState(false);
 
@@ -23,12 +26,24 @@ export function Favorites() {
         async function fetchMeals() {
             const response = await api.get('/favorites');
 
+            const current = await fetchOrders();
+
             const favoriteMeals = response.data.map(meal => {
-                return {
+                const newMeal = {
                     ...meal,
+                    quantity: 0,
                     id: meal.meal_id,
                     isFavorite: true
                 }
+
+                current.items.forEach(item => {
+                    if (item.id === meal.meal_id) {
+                        newMeal.quantity = item.quantity
+                    }
+                });
+
+                return newMeal;
+
             });
 
             setRemovedMeal(false);

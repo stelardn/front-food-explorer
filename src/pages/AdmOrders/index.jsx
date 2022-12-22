@@ -9,16 +9,21 @@ import { useAuth } from "../../hooks/auth";
 
 import { FaCircle } from "react-icons/fa";
 import { api } from "../../services/api";
+import { HeaderAdm } from "../../components/HeaderAdm";
+import { useNavigate } from "react-router-dom";
 
 export function AdmOrders() {
   const [allOrders, setAlllOrders] = useState([]);
+  const navigate = useNavigate();
+
 
   async function fetchAllOrders() {
     const response = await api.get('/orders');
-
-    console.log(response.data)
-
     setAlllOrders([...response.data]);
+  }
+
+  function goToOrder(order) {
+    navigate(`/orders/${order.id}`);
   }
 
   async function handleStatus(id, status) {
@@ -37,7 +42,7 @@ export function AdmOrders() {
 
   return (
     <Container>
-      <Header />
+      <HeaderAdm />
       <Main>
         <h1>Pedidos</h1>
         <div className="table-scroll">
@@ -85,10 +90,10 @@ export function AdmOrders() {
                         </select>
                       </div>
                     </td>
-                    <td className="code" key={`${String(order.id)}.id`}>
+                    <td onClick={() => goToOrder(order)} className="code" key={`${String(order.id)}.id`}>
                       {order.id}
                     </td>
-                    <td className="items" key={`${String(order.id)}.its`}>
+                    <td onClick={() => goToOrder(order)} className="items" key={`${String(order.id)}.its`}>
                       {order.items.map((item, index) =>
                         index === order.items.length - 1 ? (
                           <span key={String(`it.${index}`)}>

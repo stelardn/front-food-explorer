@@ -8,7 +8,7 @@ import { Input } from '../../components/Input';
 import { TextButton } from "../../components/TextButton";
 
 import { FiCreditCard, FiClock, FiCheckCircle } from "react-icons/fi";
-import { BsXDiamond}  from 'react-icons/bs';
+import { BsXDiamond } from 'react-icons/bs';
 import { TfiReceipt } from "react-icons/tfi";
 import { CiForkAndKnife } from 'react-icons/ci'
 
@@ -19,16 +19,17 @@ import qrCode from '../../assets/qrcode.png';
 import { useParams } from "react-router-dom";
 import { useAuth } from "../../hooks/auth";
 import { api } from "../../services/api";
+import { HeaderAdm } from "../../components/HeaderAdm";
 
-export function ViewOrder(){
+export function ViewOrder() {
 
 	const params = useParams();
-	const {user} = useAuth();
+	const { user } = useAuth();
 
 	const [currentUser, setCurrentUser] = useState(user);
-    const [order, setOrder] = useState([]);
-    const [paymentStatus, setPaymentStatus] = useState('delivered');
-    const [status, setStatus] = useState(0);
+	const [order, setOrder] = useState([]);
+	const [paymentStatus, setPaymentStatus] = useState('delivered');
+	const [status, setStatus] = useState(0);
 
 	async function fetchData() {
 		const orderResponse = await api.get(`/orders/${params.id}`);
@@ -38,12 +39,12 @@ export function ViewOrder(){
 	}
 
 	async function handleRemoveItem(item) {
-		if(status === 3 || status === 4) {
-			return alert ('Não é possível editar um pedido já pago.')
+		if (status === 3 || status === 4) {
+			return alert('Não é possível editar um pedido já pago.')
 		}
 		const confirmRemove = window.confirm(`Deseja remover ${item.name} do pedido?`);
 
-		if(confirmRemove) {
+		if (confirmRemove) {
 			const response = await api.put(`/orders/${params.id}`, { meal_id: item.id, quantity: 0 });
 
 			alert(response.data);
@@ -55,110 +56,110 @@ export function ViewOrder(){
 	}
 
 
-    function handleSelectPayment(method){
-		if(paymentStatus === 'delivered' || paymentStatus === 'paid'){
+	function handleSelectPayment(method) {
+		if (paymentStatus === 'delivered' || paymentStatus === 'paid') {
 			return
 		}
-		
-        if(method === paymentStatus) {
-            setPaymentStatus('');
+
+		if (method === paymentStatus) {
+			setPaymentStatus('');
 			const buttonToSelect = document.getElementById(`${method}-button`);
 			buttonToSelect.classList.remove('selected');
 
-        } else {
+		} else {
 			const currentlySelectedButton = document.getElementsByClassName('selected');
 			if (currentlySelectedButton[0]) {
 				currentlySelectedButton[0].classList.remove('selected');
 			}
-			
+
 			const buttonToSelect = document.getElementById(`${method}-button`);
 			buttonToSelect.classList.add('selected');
 
-            setPaymentStatus(method);
-        }
-    }
+			setPaymentStatus(method);
+		}
+	}
 
-    useEffect((() => {
+	useEffect((() => {
 		fetchData();
-    }), []);
+	}), []);
 
-    useEffect(() => {
-		switch(status){
-			case(3): {
+	useEffect(() => {
+		switch (status) {
+			case (3): {
 				setPaymentStatus('paid');
 			}
-			break;
-			case(4): {
+				break;
+			case (4): {
 				setPaymentStatus('delivered');
 			}
-			break;
+				break;
 			default: {
 				setPaymentStatus('');
 			}
 		}
-    }, [status, order]);
+	}, [status, order]);
 
 
-    return (
-        <Container>
-            <Header/>
-            <main>
-                <MyOrder>
-                    <h2>Meu pedido</h2>
-                    <div id="items-wrapper">
-                        {
-                            order.items && 
+	return (
+		<Container>
+			{currentUser.isAdmin ? <HeaderAdm /> : <Header />}
+			<main>
+				<MyOrder>
+					<h2>Meu pedido</h2>
+					<div id="items-wrapper">
+						{
+							order.items &&
 							order.items.map(item => (
-                                <OrderItem key={String(item.id)}>
-                                    <img src={mealImg} alt={`Imagem de ${item.name}.`} />
-                                    <div className="item-details">
-                                        <p>
-                                            {item.quantity} x {item.name}
-                                            <span>R$ {item.price}</span>
-                                        </p>
-                                        <button
+								<OrderItem key={String(item.id)}>
+									<img src={mealImg} alt={`Imagem de ${item.name}.`} />
+									<div className="item-details">
+										<p>
+											{item.quantity} x {item.name}
+											<span>R$ {item.price}</span>
+										</p>
+										<button
 											onClick={() => handleRemoveItem(item)}
 										>
 											Excluir
 										</button>
-                                    </div>
-                                </OrderItem>
-                            ))
-                        }
-                    </div>
-                    <strong>Total: R$ {order && order.price}</strong>
-                </MyOrder>
-                <Payment>
-                    <h2>Pagamento</h2>
-                    <div id="display-payment">
-                        <div id="select-payment">
-                            <button id="pix-button" onClick={() => handleSelectPayment('pix')}>
-                                <BsXDiamond/>
-                                PIX
-                            </button>
-                            <button id='credit-button' onClick={() => handleSelectPayment('credit')}>
-                                <FiCreditCard/>
-                                Crédito
-                            </button>
+									</div>
+								</OrderItem>
+							))
+						}
+					</div>
+					<strong>Total: R$ {order && order.price}</strong>
+				</MyOrder>
+				<Payment>
+					<h2>Pagamento</h2>
+					<div id="display-payment">
+						<div id="select-payment">
+							<button id="pix-button" onClick={() => handleSelectPayment('pix')}>
+								<BsXDiamond />
+								PIX
+							</button>
+							<button id='credit-button' onClick={() => handleSelectPayment('credit')}>
+								<FiCreditCard />
+								Crédito
+							</button>
 						</div>
 						<div id="current-payment">
 							{(() => {
-								switch(paymentStatus) {
-									case('pix'): {
-											return (
-												<img src={qrCode} />
-											)
-										}
-									break;
-									case('credit'): {
+								switch (paymentStatus) {
+									case ('pix'): {
+										return (
+											<img src={qrCode} />
+										)
+									}
+										break;
+									case ('credit'): {
 										return (
 											<CreditPayment>
-												<Input 
+												<Input
 													label='Número do cartão'
 													placeholder='0000 0000 0000 0000'
 												/>
 												<div id="credit-second-row">
-													<Input 
+													<Input
 														label='Validade'
 														placeholder='04/25'
 													/>
@@ -167,16 +168,16 @@ export function ViewOrder(){
 														placeholder='04/25'
 													/>
 												</div>
-												<TextButton 
+												<TextButton
 													content='Finalizar pagamento'
 													icon={TfiReceipt}
 												/>
 											</CreditPayment>
 										)
 									}
-									break;
+										break;
 
-									case('paid'): {
+									case ('paid'): {
 										return (
 											<SVGPaymentTemplate>
 												<FiCheckCircle size={128} />
@@ -185,7 +186,7 @@ export function ViewOrder(){
 										)
 									}
 
-									case('delivered'): {
+									case ('delivered'): {
 										return (
 											<SVGPaymentTemplate>
 												<CiForkAndKnife size={128} />
@@ -193,7 +194,7 @@ export function ViewOrder(){
 											</SVGPaymentTemplate>
 										)
 									}
-								break;
+										break;
 									default: {
 										return (
 											<SVGPaymentTemplate>
@@ -202,15 +203,15 @@ export function ViewOrder(){
 											</SVGPaymentTemplate>
 										)
 									}
-									break;
+										break;
 								}
-								
+
 							})()}
 						</div>
-                    </div>
-                </Payment>
-            </main>
-            <Footer/>
-        </Container>
-    )
+					</div>
+				</Payment>
+			</main>
+			<Footer />
+		</Container>
+	)
 }

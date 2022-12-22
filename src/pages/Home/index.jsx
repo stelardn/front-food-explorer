@@ -10,6 +10,7 @@ import banner from '../../assets/banner.png';
 
 import { useAuth } from "../../hooks/auth";
 import { api } from "../../services/api";
+import { HeaderAdm } from "../../components/HeaderAdm";
 
 export function Home() {
 
@@ -19,6 +20,7 @@ export function Home() {
     const [mealTypes, setMealTypes] = useState([]);
     const [favorites, setFavorites] = useState([]);
     const [currentOrder, setCurrentOrder] = useState();
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('@foodexplorer:user')));
     const ordersFetchedRef = useRef(false);
 
 
@@ -37,7 +39,6 @@ export function Home() {
             const savedMeals = mealsResponse.data;
 
             const current = await fetchOrders();
-            console.log('fetched orders');
 
             const mealsWithQuantities = savedMeals.map(meal => {
                 const newMeal = {
@@ -78,7 +79,7 @@ export function Home() {
 
     return (
         <Container>
-            <Header />
+            {user.isAdmin ? <HeaderAdm /> : <Header />}
             <div id="page">
                 <section id="banner">
                     <section id="hero">
