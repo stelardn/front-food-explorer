@@ -13,6 +13,8 @@ import { api } from "../../services/api";
 import { useAuth } from '../../hooks/auth';
 import { useNavigate } from "react-router-dom";
 
+import picturePlaceHolder from '../../assets/empty-plate.png';
+
 
 export function MealItem({ data, className, onHeartClick }) {
     const { currentOrder } = useAuth();
@@ -21,6 +23,7 @@ export function MealItem({ data, className, onHeartClick }) {
     const [currentOrderId, setCurrentOrderId] = useState(currentOrder.id);
     const [amount, setAmount] = useState(data.quantity);
     const [favorite, setFavorite] = useState(data.isFavorite);
+    const pictureUrl = data.picture ? `${api.defaults.baseURL}/files/${data.picture}` : picturePlaceHolder;
 
     function handleGoToMeal() {
         navigate(`/meals/${data.id}`);
@@ -71,7 +74,7 @@ export function MealItem({ data, className, onHeartClick }) {
     return (
         <Container className={className}>
             {favorite ? <FaHeart size={32} onClick={handleFavorite} /> : <FaRegHeart size={32} onClick={handleFavorite} />}
-            <img src={`../../${data.picture}`} alt='Imagem do prato' />
+            <img src={pictureUrl} alt='Imagem do prato' />
             <button id="title" onClick={handleGoToMeal}>
                 {data.name}
                 <FaAngleRight />
