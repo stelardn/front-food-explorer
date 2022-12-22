@@ -30,8 +30,9 @@ export function UpdateMeal() {
     const [ingredients, setIngredients] = useState([]);
     const [newIngredient, setNewIngredient] = useState('');
 
-    const [mealPictureFile, setMealPictureFile] = useState();
-    const [mealPictureName, setMealPictureName] = useState(mockMeals[0].picture);
+    // const [mealPicture, setMealPicture] = useState();
+    const [mealPictureFile, setMealPictureFile] = useState(null);
+    const [mealPictureName, setMealPictureName] = useState();
 
 
     function handleAddIngredient() {
@@ -57,7 +58,7 @@ export function UpdateMeal() {
     function handleRemovePicture(event) {
         event.preventDefault();
         setMealPictureFile('');
-        setMealPictureName(mockMeals[0].picture ?? '');
+        setMealPictureName('');
     }
 
     function handleBack() {
@@ -95,6 +96,16 @@ export function UpdateMeal() {
             description
         }
 
+        if (mealPictureFile) {
+            const fileUploadForm = new FormData();
+
+            fileUploadForm.append('picture', mealPictureFile);
+
+            const picture = await api.patch(`/meals/picture/${params.id}`, fileUploadForm);
+
+            updated.picture = picture.data;
+        }
+
         console.log(updated);
 
         const updatedMeal = Object.assign(details, updated);
@@ -123,6 +134,7 @@ export function UpdateMeal() {
             setName(data.name);
             setDescription(data.description);
             setPrice(data.price);
+            setMealPictureName(data.picture);
 
         }
 
