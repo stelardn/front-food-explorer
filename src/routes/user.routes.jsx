@@ -6,6 +6,7 @@ import { ViewOrder } from "../pages/ViewOrder";
 import { UserOrders } from "../pages/UserOrders";
 import { Favorites } from "../pages/Favorites";
 import { NotFound } from "../pages/NotFound";
+import { SearchResults } from "../pages/SearchResults";
 
 
 export function UserRoutes() {
@@ -16,6 +17,7 @@ export function UserRoutes() {
       <Route path="/meals/favorites" element={<Favorites />} />
       <Route path="/meals/:id" element={<ViewMeal />} />
       <Route path="/orders" element={<UserOrders />} />
+      <Route path="/meals/search/" element={<SearchResults />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

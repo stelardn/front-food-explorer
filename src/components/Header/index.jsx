@@ -10,15 +10,23 @@ import { RiHeartsLine } from 'react-icons/ri';
 
 import { useAuth } from "../../hooks/auth";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { api } from "../../services/api";
 
 export function Header() {
     const { signOff, user } = useAuth();
 
     const navigate = useNavigate();
 
+    const [search, setSearch] = useState();
+
     function handleSignOff() {
         signOff();
         navigate('/');
+    }
+
+    function handleSearch() {
+        navigate(`meals/search?filter=${search}`);
     }
 
     return (
@@ -35,16 +43,19 @@ export function Header() {
                 </div>
                 <RiHeartsLine onClick={() => navigate('/meals/favorites')} />
                 <TextButton onClick={() => navigate('/orders')} icon={TfiReceipt} />
-                <FiLogOut onClick={handleSignOff}/>
+                <FiLogOut onClick={handleSignOff} />
             </ContainerMobile>
             <ContainerDesktop className="mobile-hidden">
-                <Logo onClick={() => navigate('/')}/>
-                <LinkButton onClick={() => navigate('/meals/favorites')}  content='Meus favoritos' />
+                <Logo onClick={() => navigate('/')} />
+                <LinkButton onClick={() => navigate('/meals/favorites')} content='Meus favoritos' />
                 <div className="input-wrapper">
-                    <FiSearch />
-                    <input placeholder="Busque pelas opções de pratos" />
+                    <FiSearch onClick={handleSearch} />
+                    <input
+                        placeholder="Busque pelas opções de pratos"
+                        onChange={e => setSearch(e.target.value)}
+                    />
                 </div>
-                <TextButton icon={TfiReceipt} content='Meus pedidos' onClick={() => navigate('/orders')}/>
+                <TextButton icon={TfiReceipt} content='Meus pedidos' onClick={() => navigate('/orders')} />
                 <FiLogOut onClick={handleSignOff} />
             </ContainerDesktop>
         </Container>
