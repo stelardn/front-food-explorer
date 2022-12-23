@@ -26,7 +26,7 @@ export function Header() {
     }
 
     function handleSearch() {
-        navigate(`meals/search?filter=${search}`);
+        navigate(`/meals/search?filter=${search}`);
     }
 
     return (
@@ -38,8 +38,16 @@ export function Header() {
                     </svg>
                 </button>
                 <div className="input-wrapper">
-                    <FiSearch />
-                    <input placeholder="Buscar" />
+                    <FiSearch onClick={handleSearch} />
+                    <input
+                        placeholder="Buscar"
+                        onChange={e => setSearch(e.target.value)}
+                        onKeyPress={event => {
+                            if (event.key === 'Enter') {
+                                handleSearch()
+                            }
+                        }}
+                    />
                 </div>
                 <RiHeartsLine onClick={() => navigate('/meals/favorites')} />
                 <TextButton onClick={() => navigate('/orders')} icon={TfiReceipt} />
@@ -49,10 +57,17 @@ export function Header() {
                 <Logo onClick={() => navigate('/')} />
                 <LinkButton onClick={() => navigate('/meals/favorites')} content='Meus favoritos' />
                 <div className="input-wrapper">
-                    <FiSearch onClick={handleSearch} />
+                    <FiSearch
+                        onClick={handleSearch}
+                    />
                     <input
                         placeholder="Busque pelas opções de pratos"
                         onChange={e => setSearch(e.target.value)}
+                        onKeyPress={event => {
+                            if (event.key === 'Enter') {
+                                handleSearch()
+                            }
+                        }}
                     />
                 </div>
                 <TextButton icon={TfiReceipt} content='Meus pedidos' onClick={() => navigate('/orders')} />
