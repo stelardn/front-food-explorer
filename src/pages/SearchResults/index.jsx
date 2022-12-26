@@ -26,16 +26,6 @@ export function SearchResults({ match, location }) {
     const [meals, setMeals] = useState([]);
     const [favorites, setFavorites] = useState([]);
     const [filter, setFilter] = useState(query.get('filter'));
-    const ordersFetchedRef = useRef(false);
-
-
-    function capitalize(str) {
-        const firstLetter = str[0].toUpperCase();
-
-        const otherLetters = str.slice(1);
-
-        return firstLetter + otherLetters;
-    }
 
     async function fetchMeals() {
         const mealsResponse = await api.get(`/meals?name=${filter}`);
@@ -63,18 +53,19 @@ export function SearchResults({ match, location }) {
     }
 
     useEffect(() => {
-
-        if (ordersFetchedRef.current) return;
-        ordersFetchedRef.current = true;
         fetchMeals();
 
-    }, [favorites]);
+    }, [favorites, filter]);
 
     useEffect(() => {
         const favoriteMeals = meals.filter(meal => meal.isFavorite === true);
 
         setFavorites(favoriteMeals);
     }, []);
+
+    useEffect(() => {
+        setFilter(query.get('filter'));
+    }, [query])
 
     return (
         <Container>
