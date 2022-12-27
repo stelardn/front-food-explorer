@@ -12,7 +12,7 @@ import { LinkButton } from "../../components/LinkButton";
 
 import picturePlaceHolder from '../../assets/empty-plate.png';
 
-import alface from '../../assets/alface.png';
+import alface from '../../assets/ingredients/alface.png';
 
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { TfiReceipt } from 'react-icons/tfi';
@@ -83,24 +83,23 @@ export function ViewMeal() {
         alert(response.data.toString());
     }
 
-    async function fetchMealData() {
-        const mealResponse = await api.get(`/meals/${params.id}`);
-
-        const current = await fetchOrders();
-
-        setData(mealResponse.data);
-
-        current.items.forEach(item => {
-            if (item.id === data.id) {
-                setAmount(item.quantity)
-            }
-        });
-
-        setFavorite(mealResponse.data.isFavorite);
-
-    }
 
     useEffect(() => {
+        async function fetchMealData() {
+            const mealResponse = await api.get(`/meals/${params.id}`);
+
+            setData(mealResponse.data);
+            setFavorite(mealResponse.data.isFavorite);
+
+            const current = await fetchOrders();
+
+            const mealInOrder = current.items.find(item => item.id === mealResponse.data.id);
+
+            if (mealInOrder) {
+                setAmount(mealInOrder.quantity);
+            }
+        }
+
         fetchMealData();
     }, [])
 
@@ -117,14 +116,18 @@ export function ViewMeal() {
                         <h3>{data.name}</h3>
                         <p>{data.description}</p>
                         <div className="ingredients">
-                            <div className="ingredient">
-                                <img src={alface} />
-                                <legend>alface</legend>
-                            </div>
-                            <div className="ingredient">
-                                <img src={alface} />
-                                <legend>alface</legend>
-                            </div>
+                            {
+                                data.ingredients &&
+                                data.ingredients.map(ingredient => {
+                                    return (
+                                        <div className="ingredient">
+                                            <img src={`../../assets/ingredients/${ingredient.name}.png`} />
+                                            <legend>{ingredient.name}</legend>
+                                        </div>
+                                    )
+                                })
+
+                            }
                         </div>
                         <div className="price-calculation">
                             <PriceTag price={data.price} />
