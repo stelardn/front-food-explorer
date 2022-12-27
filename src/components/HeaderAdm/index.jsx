@@ -30,8 +30,8 @@ export function HeaderAdm() {
                     </svg>
                 </div>
                 <span>Administrador</span>
-                <TextButton icon={TfiReceipt} />
-                <FiLogOut />
+                <TextButton icon={TfiReceipt} onClick={() => navigate('/orders')} />
+                <FiLogOut onClick={handleSignOff} />
             </ContainerMobile>
             <ContainerDesktop className="mobile-hidden">
                 <header>

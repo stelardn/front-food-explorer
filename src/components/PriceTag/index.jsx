@@ -2,7 +2,7 @@ import { Container } from "./styles";
 
 export function PriceTag({ price }) {
     function formatNumberToPrice(number) {
-        const numberWithCents = number.toFixed(2);
+        const numberWithCents = Number(number).toFixed(2);
 
         const numberToStringWithComma = String(numberWithCents).replace('.', ',');
 

@@ -10,8 +10,8 @@ import { TextButton } from "../../components/TextButton";
 import { FiCreditCard, FiClock, FiCheckCircle } from "react-icons/fi";
 import { BsXDiamond } from 'react-icons/bs';
 import { TfiReceipt } from "react-icons/tfi";
-import { CiForkAndKnife } from 'react-icons/ci'
 
+import { ImSpoonKnife } from 'react-icons/im';
 
 import mealImg from '../../assets/pic1.png';
 import { mockUser } from '../../../mockData';
@@ -189,7 +189,7 @@ export function ViewOrder() {
 									case ('delivered'): {
 										return (
 											<SVGPaymentTemplate>
-												<CiForkAndKnife size={128} />
+												<ImSpoonKnife size={128} />
 												<p>Pedido entregue!</p>
 											</SVGPaymentTemplate>
 										)
