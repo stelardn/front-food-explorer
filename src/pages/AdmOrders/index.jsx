@@ -107,7 +107,7 @@ export function AdmOrders() {
                       )}
                     </td>
                     <td className="datetime" key={`${String(order.id)}.dt`}>
-                      {order.updated_at}
+                      {order.created_at}
                     </td>
                   </tr>
                 ))}
