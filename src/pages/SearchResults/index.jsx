@@ -28,7 +28,7 @@ export function SearchResults({ match, location }) {
     const [filter, setFilter] = useState(query.get('filter'));
 
     async function fetchMeals() {
-        const mealsResponse = await api.get(`/meals?name=${filter}`);
+        const mealsResponse = await api.get(`/meals?filter=${filter}`);
 
         const savedMeals = mealsResponse.data;
 

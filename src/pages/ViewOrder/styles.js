@@ -21,6 +21,20 @@ export const Container = styled.div`
             font-size: clamp(2.4rem, 3vw, 3.2rem);
             margin-bottom: clamp(1rem,2vh,3.2rem);
         }
+
+        #right {
+
+            max-width: 53rem;
+            width: 100%;
+            margin: 0 auto;
+
+            #status-btn {                
+                button {
+                    width: 100%;
+                    margin-top: 1.6rem;   
+                }
+            }
+        }
     }
 
     @media (min-width: 960px) {

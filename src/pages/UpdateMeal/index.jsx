@@ -106,17 +106,13 @@ export function UpdateMeal() {
             updated.picture = picture.data;
         }
 
-        console.log(updated);
-
         const updatedMeal = Object.assign(details, updated);
-        console.log(updatedMeal);
 
         api.put(`/meals/${params.id}`, { ...updatedMeal })
             .then(() => {
                 alert('Prato atualizado com sucesso!')
             })
             .catch(error => {
-                console.log(error);
                 alert(error.data.message.toString())
             });
     }

@@ -24,8 +24,6 @@ function AuthProvider({ children }) {
 
       const meals = mealsResponse.data;
 
-      console.log(mealsResponse.data);
-
       setData({ token, user, meals });
 
       localStorage.setItem("@foodexplorer:meals", JSON.stringify(meals));
@@ -57,7 +55,7 @@ function AuthProvider({ children }) {
 
     const userOrders = ordersResponse.data;
 
-    const lastOrder = userOrders[userOrders.length - 1];
+    const lastOrder = userOrders[0];
 
     let orderId;
 

@@ -79,6 +79,20 @@ export function ViewOrder() {
 		}
 	}
 
+	async function handleConfirmOrder() {
+		try {
+			if (order.items.length > 0) {
+				await api.patch(`orders/${params.id}`, { status: 2 });
+				setStatus(2);
+				return alert('Pedido enviado! Aguarde a confirmação pelo restaurante...');
+			}
+
+			return alert('O carrinho está vazio! Adicione algo para enviar o pedido.');
+		} catch {
+			return alert('Algo deu errado com o envio do seu pedido. Aguarde para tentar novamente.')
+		}
+	}
+
 	useEffect((() => {
 		fetchData();
 	}), []);
@@ -129,87 +143,93 @@ export function ViewOrder() {
 					</div>
 					<strong>Total: R$ {order && order.price}</strong>
 				</MyOrder>
-				<Payment>
-					<h2>Pagamento</h2>
-					<div id="display-payment">
-						<div id="select-payment">
-							<button id="pix-button" onClick={() => handleSelectPayment('pix')}>
-								<BsXDiamond />
-								PIX
-							</button>
-							<button id='credit-button' onClick={() => handleSelectPayment('credit')}>
-								<FiCreditCard />
-								Crédito
-							</button>
-						</div>
-						<div id="current-payment">
-							{(() => {
-								switch (paymentStatus) {
-									case ('pix'): {
-										return (
-											<img src={qrCode} />
-										)
-									}
-										break;
-									case ('credit'): {
-										return (
-											<CreditPayment>
-												<Input
-													label='Número do cartão'
-													placeholder='0000 0000 0000 0000'
-												/>
-												<div id="credit-second-row">
+				<div id="right">
+					<Payment>
+						<h2>Pagamento</h2>
+						<div id="display-payment">
+							<div id="select-payment">
+								<button id="pix-button" onClick={() => handleSelectPayment('pix')}>
+									<BsXDiamond />
+									PIX
+								</button>
+								<button id='credit-button' onClick={() => handleSelectPayment('credit')}>
+									<FiCreditCard />
+									Crédito
+								</button>
+							</div>
+							<div id="current-payment">
+								{(() => {
+									switch (paymentStatus) {
+										case ('pix'): {
+											return (
+												<img src={qrCode} />
+											)
+										}
+											break;
+										case ('credit'): {
+											return (
+												<CreditPayment>
 													<Input
-														label='Validade'
-														placeholder='04/25'
+														label='Número do cartão'
+														placeholder='0000 0000 0000 0000'
 													/>
-													<Input
-														label='CVC'
-														placeholder='04/25'
+													<div id="credit-second-row">
+														<Input
+															label='Validade'
+															placeholder='04/25'
+														/>
+														<Input
+															label='CVC'
+															placeholder='04/25'
+														/>
+													</div>
+													<TextButton
+														content='Finalizar pagamento'
+														icon={TfiReceipt}
 													/>
-												</div>
-												<TextButton
-													content='Finalizar pagamento'
-													icon={TfiReceipt}
-												/>
-											</CreditPayment>
-										)
-									}
-										break;
+												</CreditPayment>
+											)
+										}
+											break;
 
-									case ('paid'): {
-										return (
-											<SVGPaymentTemplate>
-												<FiCheckCircle size={128} />
-												<p>Pagamento aprovado!</p>
-											</SVGPaymentTemplate>
-										)
+										case ('paid'): {
+											return (
+												<SVGPaymentTemplate>
+													<FiCheckCircle size={128} />
+													<p>Pagamento aprovado!</p>
+												</SVGPaymentTemplate>
+											)
+										}
+
+										case ('delivered'): {
+											return (
+												<SVGPaymentTemplate>
+													<ImSpoonKnife size={128} />
+													<p>Pedido entregue!</p>
+												</SVGPaymentTemplate>
+											)
+										}
+											break;
+										default: {
+											return (
+												<SVGPaymentTemplate>
+													<FiClock size={128} />
+													<p>Aguardando pagamento no caixa.</p>
+												</SVGPaymentTemplate>
+											)
+										}
+											break;
 									}
 
-									case ('delivered'): {
-										return (
-											<SVGPaymentTemplate>
-												<ImSpoonKnife size={128} />
-												<p>Pedido entregue!</p>
-											</SVGPaymentTemplate>
-										)
-									}
-										break;
-									default: {
-										return (
-											<SVGPaymentTemplate>
-												<FiClock size={128} />
-												<p>Aguardando pagamento no caixa.</p>
-											</SVGPaymentTemplate>
-										)
-									}
-										break;
-								}
-
-							})()}
+								})()}
+							</div>
 						</div>
+					</Payment>
+					<div id="status-btn">
+						{status === 1 ? <TextButton content='Confirmar pedido' onClick={handleConfirmOrder} /> : <></>}
+
 					</div>
-				</Payment>
+				</div>
 			</main>
 			<Footer />
 		</Container>

@@ -79,7 +79,7 @@ export function Home() {
 
     return (
         <Container>
-            {user.isAdmin ? <HeaderAdm /> : <Header />}
+            <Header />
             <div id="page">
                 <section id="banner">
                     <section id="hero">
