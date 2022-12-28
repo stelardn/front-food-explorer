@@ -11,8 +11,7 @@ import { Footer } from '../../components/Footer';
 import { LinkButton } from "../../components/LinkButton";
 
 import picturePlaceHolder from '../../assets/empty-plate.png';
-
-import alface from '../../assets/ingredients/alface.png';
+import ingredientPlaceHolder from '../../assets/ingredient-placeHolder.png';
 
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { TfiReceipt } from 'react-icons/tfi';
@@ -23,6 +22,7 @@ import { FaAngleLeft } from "react-icons/fa";
 import { useEffect } from "react";
 import { api } from "../../services/api";
 import { useAuth } from "../../hooks/auth";
+import { IngredientIcon } from "../../components/IngredientIcon";
 
 
 export function ViewMeal() {
@@ -83,6 +83,23 @@ export function ViewMeal() {
         alert(response.data.toString());
     }
 
+    function getIngredientSrc(ingredient) {
+        api.get(`/public/${ingredient.picture}`)
+            .then(response => {
+                const url = `${api.defaults.baseURL}/public/${ingredient.picture}`;
+                console.log(response);
+                return url;
+            })
+            .catch(err => {
+                console.log(err);
+                const url = ingredientPlaceHolder;
+                return url;
+            })
+            .finally(() => {
+
+            })
+    }
+
 
     useEffect(() => {
         async function fetchMealData() {
@@ -120,13 +137,13 @@ export function ViewMeal() {
                                 data.ingredients &&
                                 data.ingredients.map(ingredient => {
                                     return (
-                                        <div className="ingredient">
-                                            <img src={`../../assets/ingredients/${ingredient.name}.png`} />
-                                            <legend>{ingredient.name}</legend>
-                                        </div>
+                                        <IngredientIcon
+                                            ingredient={ingredient}
+                                            key={`ing.${ingredient.id}`}
+                                            className='ingredient'
+                                        />
                                     )
                                 })
-
                             }
                         </div>
                         <div className="price-calculation">
