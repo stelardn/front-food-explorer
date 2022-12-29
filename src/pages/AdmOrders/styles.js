@@ -84,7 +84,7 @@ export const Main = styled.div`
         td, th {
             padding: clamp(0.8rem, 2vh, 1.6rem) clamp(0.8rem, 2vw, 2.4rem);
             text-align: start;
-            color: ${({theme}) => theme.COLORS.GREY_200};
+            color: ${({ theme }) => theme.COLORS.GREY_200};
             font-weight: 400;
             font-family: 'Roboto', sans-serif;
         }
@@ -146,6 +146,7 @@ export const Main = styled.div`
                 border: none;
                 background-color: transparent;
                 color: white;
+                outline: none;
 
 
                 option {
