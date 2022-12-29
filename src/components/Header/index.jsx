@@ -11,7 +11,6 @@ import { RiHeartsLine } from 'react-icons/ri';
 import { useAuth } from "../../hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { api } from "../../services/api";
 
 export function Header() {
     const { signOff, user } = useAuth();

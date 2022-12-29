@@ -17,7 +17,6 @@ import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { TfiReceipt } from 'react-icons/tfi';
 
 
-import mealPicture from '../../assets/pic1.png';
 import { FaAngleLeft } from "react-icons/fa";
 import { useEffect } from "react";
 import { api } from "../../services/api";

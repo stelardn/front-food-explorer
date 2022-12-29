@@ -1,7 +1,5 @@
 import { Container } from "./styles";
 
-import { FiX, FiPlus } from 'react-icons/fi';
-
 import { NewIngredient } from './NewIngredient';
 import { OldIngredient } from './OldIngredient';
 

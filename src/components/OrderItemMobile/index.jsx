@@ -1,6 +1,6 @@
 import { FaCircle } from "react-icons/fa";
-import { Container } from "./styles";
 import { useNavigate } from "react-router-dom";
+import { Container } from "./styles";
 
 export function OrderItemMobile({ order }) {
     const navigate = useNavigate();

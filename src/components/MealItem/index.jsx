@@ -1,4 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { useAuth } from '../../hooks/auth';
+import { api } from "../../services/api";
+
 import { Container } from "./styles";
 
 import { QtyInput } from "../QtyInput";
@@ -6,13 +11,6 @@ import { PriceTag } from "../PriceTag";
 import { TextButton } from '../TextButton';
 
 import { FaHeart, FaRegHeart, FaAngleRight } from 'react-icons/fa';
-
-import mealPicture from '../../assets/pic1.png';
-import { api } from "../../services/api";
-
-import { useAuth } from '../../hooks/auth';
-import { useNavigate } from "react-router-dom";
-
 import picturePlaceHolder from '../../assets/empty-plate.png';
 
 

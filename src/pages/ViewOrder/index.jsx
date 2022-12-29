@@ -13,7 +13,6 @@ import { TfiReceipt } from "react-icons/tfi";
 
 import { ImSpoonKnife } from 'react-icons/im';
 
-import mealImg from '../../assets/pic1.png';
 import { mockUser } from '../../../mockData';
 import qrCode from '../../assets/qrcode.png';
 import { useParams } from "react-router-dom";

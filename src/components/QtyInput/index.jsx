@@ -1,5 +1,4 @@
 import { Container } from "./styles";
-import { useState } from "react";
 
 export function QtyInput({ handleMinus, handleAdd, amount }) {
     return (

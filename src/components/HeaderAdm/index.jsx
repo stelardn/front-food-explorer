@@ -4,9 +4,8 @@ import { Logo } from '../Logo';
 import { TextButton } from '../TextButton';
 import { LinkButton } from '../LinkButton';
 
-import { FiLogOut, FiSearch, FiPlusSquare } from 'react-icons/fi'
+import { FiLogOut, FiPlusSquare } from 'react-icons/fi'
 import { TfiReceipt } from 'react-icons/tfi';
-import { RiHeartsLine } from 'react-icons/ri';
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/auth";
 

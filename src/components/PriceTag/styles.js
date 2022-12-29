@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    /* width: 22rem; */
-    /* height: 5.1rem; */
 
     font-family: 'Roboto', sans-serif;
     font-weight: 400;

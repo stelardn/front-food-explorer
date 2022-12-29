@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   --gradient-blue: ${({ theme }) => theme.COLORS.GRADIENT_BLUE};
-  /* max-width: 112.2rem; */
 
   overflow: hidden;
 
