@@ -1,24 +1,24 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useAuth } from "../../hooks/auth";
+import { api } from "../../services/api";
 
-import { Container, MyOrder, OrderItem, Payment, SVGPaymentTemplate, CreditPayment } from "./styles";
+import { Container, MyOrder, Payment, SVGPaymentTemplate, CreditPayment } from "./styles";
 
 import { Header } from "../../components/Header";
+import { HeaderAdm } from "../../components/HeaderAdm";
 import { Footer } from "../../components/Footer";
 import { Input } from '../../components/Input';
 import { TextButton } from "../../components/TextButton";
+import { OrderItem } from "../../components/OrderItem";
+
 
 import { FiCreditCard, FiClock, FiCheckCircle } from "react-icons/fi";
 import { BsXDiamond } from 'react-icons/bs';
 import { TfiReceipt } from "react-icons/tfi";
-
 import { ImSpoonKnife } from 'react-icons/im';
 
-import { mockUser } from '../../../mockData';
 import qrCode from '../../assets/qrcode.png';
-import { useParams } from "react-router-dom";
-import { useAuth } from "../../hooks/auth";
-import { api } from "../../services/api";
-import { HeaderAdm } from "../../components/HeaderAdm";
 
 export function ViewOrder() {
 
@@ -123,20 +123,7 @@ export function ViewOrder() {
 						{
 							order.items &&
 							order.items.map(item => (
-								<OrderItem key={String(item.id)}>
-									<img src={mealImg} alt={`Imagem de ${item.name}.`} />
-									<div className="item-details">
-										<p>
-											{item.quantity} x {item.name}
-											<span>R$ {item.price}</span>
-										</p>
-										<button
-											onClick={() => handleRemoveItem(item)}
-										>
-											Excluir
-										</button>
-									</div>
-								</OrderItem>
+								<OrderItem key={String(item.id)} item={item} onClick={() => handleRemoveItem(item)} />
 							))
 						}
 					</div>

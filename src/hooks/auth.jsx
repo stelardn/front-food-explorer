@@ -19,7 +19,6 @@ function AuthProvider({ children }) {
 
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-
       const mealsResponse = await api.get("/meals");
 
       const meals = mealsResponse.data;
@@ -33,7 +32,6 @@ function AuthProvider({ children }) {
         return alert(error.response.data.message);
       }
 
-      // return alert(error.toString());
       return alert("Não foi possível logar. Tente novamente.");
     }
   }

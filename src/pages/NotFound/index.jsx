@@ -1,7 +1,10 @@
-import { Container } from "./styles";
-import {Footer} from '../../components/Footer';
-import banner from '../../assets/banner.png';
 import { Link } from "react-router-dom";
+
+import { Container } from "./styles";
+
+import { Footer } from '../../components/Footer';
+
+import banner from '../../assets/banner.png';
 
 export function NotFound() {
     return (
@@ -16,7 +19,7 @@ export function NotFound() {
                     </section>
                 </section>
             </section>
-            <Footer/>
+            <Footer />
         </Container>
     )
 }

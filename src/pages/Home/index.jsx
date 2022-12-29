@@ -1,6 +1,8 @@
-import { Container } from "./styles";
-
 import { useEffect, useState, useRef } from 'react';
+import { useAuth } from "../../hooks/auth";
+import { api } from "../../services/api";
+
+import { Container } from "./styles";
 
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
@@ -8,9 +10,6 @@ import { CarouselComponent } from '../../components/CarouselComponent';
 
 import banner from '../../assets/banner.png';
 
-import { useAuth } from "../../hooks/auth";
-import { api } from "../../services/api";
-import { HeaderAdm } from "../../components/HeaderAdm";
 
 export function Home() {
 
@@ -93,7 +92,7 @@ export function Home() {
                 <main>
                     {
                         [...mealTypes].map(type => (
-                            <section>
+                            <section key={type} >
                                 <h2>{capitalize(type)}</h2>
                                 <CarouselComponent meals={meals.filter(meal => meal.type === type)} key={type} />
                             </section>

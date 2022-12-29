@@ -1,18 +1,14 @@
-import { Container } from "./styles";
+import { useEffect, useState } from 'react';
+import { useLocation } from "react-router-dom";
+import { useAuth } from "../../hooks/auth";
+import { api } from "../../services/api";
 
-import { useEffect, useState, useRef } from 'react';
+import { Container } from "./styles";
 
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { CarouselComponent } from '../../components/CarouselComponent';
 
-import banner from '../../assets/banner.png';
-
-import { useAuth } from "../../hooks/auth";
-import { api } from "../../services/api";
-import { HeaderAdm } from "../../components/HeaderAdm";
-
-import { useLocation } from "react-router-dom";
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);

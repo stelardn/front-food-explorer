@@ -46,15 +46,9 @@ export const Container = styled.div`
     padding: 0 2rem 9rem;
     width: 100%;
     margin: clamp(2rem, 2vh, 4rem) auto;
-    /* margin-bottom: clamp(2rem, 2vh, 4rem); */
-    /* display: flex; */
-    /* flex-direction: column;
-            align-items: center;
-            justify-content: center; */
 
     section {
       margin-bottom: clamp(2rem, 2vh, 4rem);
-      /* max-width: 112rem; */
     }
 
     h2 {

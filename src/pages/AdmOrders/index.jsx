@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { useAuth } from "../../hooks/auth";
+import { api } from "../../services/api";
 
 import { Container, Main } from "./styles";
 
-import { Header } from "../../components/Header";
+import { HeaderAdm } from "../../components/HeaderAdm";
 import { Footer } from "../../components/Footer";
 
-import { useAuth } from "../../hooks/auth";
-
 import { FaCircle } from "react-icons/fa";
-import { api } from "../../services/api";
-import { HeaderAdm } from "../../components/HeaderAdm";
-import { useNavigate } from "react-router-dom";
+
 
 export function AdmOrders() {
   const [allOrders, setAlllOrders] = useState([]);

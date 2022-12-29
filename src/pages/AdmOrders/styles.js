@@ -71,7 +71,6 @@ export const Main = styled.div`
 
     table {
         width: 100%;
-        /* min-width: 310px; */
 
         border-radius: .8rem .8rem 0 0;
         border-collapse: collapse;

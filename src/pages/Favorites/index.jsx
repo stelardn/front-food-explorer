@@ -1,6 +1,9 @@
-import { Container } from "./styles";
+import { api } from "../../services/api";
+import { useAuth } from "../../hooks/auth";
 
 import { useEffect, useState } from 'react';
+
+import { Container } from "./styles";
 
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
@@ -8,9 +11,6 @@ import { CarouselComponent } from '../../components/CarouselComponent';
 
 import banner from '../../assets/banner.png';
 
-import { mockMeals } from '../../../mockData';
-import { api } from "../../services/api";
-import { useAuth } from "../../hooks/auth";
 
 export function Favorites() {
     const { fetchOrders } = useAuth();

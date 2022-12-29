@@ -9,7 +9,7 @@ export default {
         BLUE_600: '#192227',
         BLUE_200: '#065E7C',
         BLUE_100: '#82F3FF',
-        
+
         GRADIENT_BLUE: '#000A0F',
 
         GREEN: '#04D361',
@@ -25,7 +25,6 @@ export default {
         GRAY_300: '#7C7C8A',
         GRAY_200: '#C4C4CC',
         GRAY_100: '#D9D9D9',
-        // GRAY_100: '#E1E1E6',
         WHITE: '#FFFFFF',
     }
 }

@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
+import { api } from "../../services/api";
+import { useAuth } from "../../hooks/auth";
 
 import { Container, Main } from "./styles";
 
@@ -9,20 +11,13 @@ import { TextButton } from '../../components/TextButton';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { LinkButton } from "../../components/LinkButton";
+import { IngredientIcon } from "../../components/IngredientIcon";
 
 import picturePlaceHolder from '../../assets/empty-plate.png';
 import ingredientPlaceHolder from '../../assets/ingredient-placeHolder.png';
 
-import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { FaHeart, FaRegHeart, FaAngleLeft } from 'react-icons/fa';
 import { TfiReceipt } from 'react-icons/tfi';
-
-
-import { FaAngleLeft } from "react-icons/fa";
-import { useEffect } from "react";
-import { api } from "../../services/api";
-import { useAuth } from "../../hooks/auth";
-import { IngredientIcon } from "../../components/IngredientIcon";
-
 
 export function ViewMeal() {
     const { currentOrder } = useAuth();
@@ -86,16 +81,11 @@ export function ViewMeal() {
         api.get(`/public/${ingredient.picture}`)
             .then(response => {
                 const url = `${api.defaults.baseURL}/public/${ingredient.picture}`;
-                console.log(response);
                 return url;
             })
             .catch(err => {
-                console.log(err);
                 const url = ingredientPlaceHolder;
                 return url;
-            })
-            .finally(() => {
-
             })
     }
 

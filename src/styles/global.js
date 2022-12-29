@@ -19,7 +19,4 @@ export default createGlobalStyle`
         font-size: 1.6rem;
         font-family: 'Poppins', sans-serif;
     }
-
-    /* font-family: 'DM Sans', sans-serif;
-    font-family: 'Roboto', sans-serif; */
 `

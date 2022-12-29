@@ -1,3 +1,7 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { api } from "../../services/api";
+
 import { Container, SelectImage } from "./styles";
 
 import { HeaderAdm } from "../../components/HeaderAdm";
@@ -8,11 +12,7 @@ import { Ingredient } from "../../components/Ingredient";
 import { TextButton } from "../../components/TextButton";
 
 import { FaAngleLeft, FaUpload } from "react-icons/fa";
-import { useState } from "react";
-import { mockMeals } from "../../../mockData";
 import { FiX } from "react-icons/fi";
-import { useNavigate } from "react-router-dom";
-import { api } from "../../services/api";
 
 
 export function NewMeal() {

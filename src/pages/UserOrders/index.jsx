@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from '../../hooks/auth';
+import { api } from "../../services/api";
 
 import { Container, MainWide, MainMobile } from "./styles";
 
@@ -6,13 +9,7 @@ import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { OrderItemMobile } from '../../components/OrderItemMobile';
 
-import { mockUser } from '../../../mockData';
-
 import { FaCircle } from 'react-icons/fa';
-
-import { useAuth } from '../../hooks/auth';
-import { api } from "../../services/api";
-import { useNavigate } from "react-router-dom";
 
 export function UserOrders() {
 
