@@ -30,7 +30,6 @@ export function UpdateMeal() {
     const [ingredients, setIngredients] = useState([]);
     const [newIngredient, setNewIngredient] = useState('');
 
-    // const [mealPicture, setMealPicture] = useState();
     const [mealPictureFile, setMealPictureFile] = useState(null);
     const [mealPictureName, setMealPictureName] = useState();
 

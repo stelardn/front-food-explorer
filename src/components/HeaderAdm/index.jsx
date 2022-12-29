@@ -4,7 +4,7 @@ import { Logo } from '../Logo';
 import { TextButton } from '../TextButton';
 import { LinkButton } from '../LinkButton';
 
-import { FiLogOut, FiSearch } from 'react-icons/fi'
+import { FiLogOut, FiSearch, FiPlusSquare } from 'react-icons/fi'
 import { TfiReceipt } from 'react-icons/tfi';
 import { RiHeartsLine } from 'react-icons/ri';
 import { useNavigate } from "react-router-dom";
@@ -30,6 +30,7 @@ export function HeaderAdm() {
                     </svg>
                 </div>
                 <span>Administrador</span>
+                <TextButton icon={FiPlusSquare} onClick={() => navigate('/meals/new')} />
                 <TextButton icon={TfiReceipt} onClick={() => navigate('/orders')} />
                 <FiLogOut onClick={handleSignOff} />
             </ContainerMobile>
@@ -38,6 +39,7 @@ export function HeaderAdm() {
                     <Logo onClick={() => navigate('/')} />
                     <div id="right">
                         <span>Administrador</span>
+                        <TextButton icon={FiPlusSquare} content='Novo prato' onClick={() => navigate('/meals/new')} />
                         <TextButton icon={TfiReceipt} content='Pedidos' onClick={() => navigate('/orders')} />
                         <FiLogOut onClick={handleSignOff} />
                     </div>
