@@ -14,8 +14,6 @@ function MealsProvider({ children }) {
 
         const meals = mealsResponse.data;
 
-        console.log(mealsResponse.data);
-
         setData({ meals });
 
         localStorage.setItem("@foodexplorer:meals", JSON.stringify(meals));

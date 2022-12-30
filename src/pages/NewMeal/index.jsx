@@ -83,8 +83,6 @@ export function NewMeal() {
         try {
             const response = await api.post('/meals/', { ...newMeal })
 
-            console.log(response.data);
-
             const meal_id = response.data.result;
 
             if (mealPictureFile) {
