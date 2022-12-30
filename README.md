@@ -1,5 +1,5 @@
 # Food Explorer
-Web application for ordering and managing orders from a fictitious restaturant called Food Explorer. 
+Web application for ordering and managing orders from a fictitious restaurant called Food Explorer. 
 
 ## Tecnologies used:
 * ReactJS
