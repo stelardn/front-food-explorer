@@ -1,5 +1,5 @@
 import { Container } from "./styles";
-import ingredientPlaceHolder from '../../assets/ingredient-placeHolder.png';
+import ingredientPlaceHolder from '../../assets/ingredient-placeholder.png';
 import { api } from "../../services/api";
 import { useEffect } from "react";
 import { useState } from "react";

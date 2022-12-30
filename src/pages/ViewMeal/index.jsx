@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from 'react-router-dom';
+import { resolvePath, useNavigate, useParams } from 'react-router-dom';
 import { api } from "../../services/api";
 import { useAuth } from "../../hooks/auth";
 
@@ -14,7 +14,7 @@ import { LinkButton } from "../../components/LinkButton";
 import { IngredientIcon } from "../../components/IngredientIcon";
 
 import picturePlaceHolder from '../../assets/empty-plate.png';
-import ingredientPlaceHolder from '../../assets/ingredient-placeHolder.png';
+import ingredientPlaceHolder from '../../assets/ingredient-placeholder.png';
 
 import { FaHeart, FaRegHeart, FaAngleLeft } from 'react-icons/fa';
 import { TfiReceipt } from 'react-icons/tfi';
